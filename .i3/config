@@ -40,7 +40,7 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 #bindcode 133 exec --no-startup-id rofi -show run
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run -terminal gnome-terminal
 
 bindsym $mod+Tab exec --no-startup-id i3-alttab.py
 bindsym $mod+Shift+Tab exec --no-startup-id i3-alttab.py reverse

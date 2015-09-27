@@ -1,5 +1,0 @@
-#!/bin/bash
-
-. "$HOME/.path"
-
-rofi -show run -terminal gnome-terminal
