@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -t 0 ]; then
-  exec emacsclient -t
+  exec emacsclient -t || (/usr/bin/emacs --daemon && exec emacsclient -t $*)
 else
-  exec emacsclient -c
+  exec emacsclient -c || (/usr/bin/emacs --daemon && exec emacsclient -c $*)
 fi  
