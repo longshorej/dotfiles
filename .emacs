@@ -22,6 +22,7 @@
                               base16-theme
                               ensime
                               evil
+                              fill-column-indicator
                               flycheck
                               gist
                               haskell-mode
@@ -34,6 +35,7 @@
                               ;nrepl
                               ;org
                               php-mode
+                              powerline
                               puppet-mode
                               restclient
                               rvm
@@ -107,3 +109,13 @@
 
 (require 'neotree)
 (global-set-key (kbd "C-n") 'neotree-toggle)
+
+
+(setq x-super-keysym 'meta)
+
+(require 'powerline)
+(powerline-center-evil-theme)
+
+(require 'fill-column-indicator)
+
+
