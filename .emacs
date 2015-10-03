@@ -117,5 +117,6 @@
 (powerline-center-evil-theme)
 
 (require 'fill-column-indicator)
-
+(fci-mode)
+(setq fci-rule-column 120)
 
