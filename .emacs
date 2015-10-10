@@ -71,6 +71,7 @@
 (setq-default indent-tabs-mode nil)
 (global-set-key (kbd "TAB") 'tab-to-tab-stop)
 (setq evil-want-C-i-jump nil)
+(setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
 
