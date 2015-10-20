@@ -15,7 +15,6 @@
 
 (setq package-archive-enable-alist '(("melpa" deft magit)))
 
-(load-theme 'base16-default-dark t)
 (defvar longshorej/packages '(ac-slime
                               auto-complete
                               ;autopair
@@ -39,7 +38,8 @@
                               puppet-mode
                               restclient
                               rvm
-                              scala-mode
+                              sbt-mode
+                              scala-mode2
                               sml-mode
                               web-mode
                               yaml-mode)

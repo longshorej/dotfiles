@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ ! -e "$HOME/programs/idea" ]; then
+  echo "install idea to $HOME/programs/bin"
+  exit 1
+fi  
+
+if [ ! -e "$HOME/programs/jdk7" ]; then
+  echo "install oracle jdk7 to $HOME/programs/jdk7"
+  exit 2
+fi  
+
+export JAVA_HOME="$HOME/programs/jdk7"
+
+exec "$HOME/programs/idea/bin/idea.sh"
