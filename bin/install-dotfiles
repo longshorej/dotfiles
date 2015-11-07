@@ -2,9 +2,13 @@
 
 cd ${0%/*}
 
-rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles .. ~
-
 pwd=`pwd`
 echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
 echo "exec $pwd/install-dotfiles" >> ~/bin/install-dotfiles
 chmod +x ~/bin/install-dotfiles
+
+cd ..
+
+git pull
+git submodule foreach git pull origin master
+rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
