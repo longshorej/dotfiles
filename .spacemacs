@@ -28,6 +28,7 @@
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
+     php
      syntax-checking
      version-control
      )
@@ -164,6 +165,7 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-linum-mode)
+  (setq powerline-default-separator 'nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
