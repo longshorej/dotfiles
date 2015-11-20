@@ -114,6 +114,7 @@ fi
 # gnome configuration
 gsettings set org.gnome.nm-applet disable-connected-notifications "true"
 gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
+gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 
 # terminal colors
 source $HOME/bin/base16-default.dark.sh

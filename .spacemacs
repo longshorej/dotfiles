@@ -21,16 +21,22 @@
      ;; better-defaults
      base16-default-dark
      emacs-lisp
-     scala
      git
+     html
+     java
+     javascript
      markdown
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      php
+     puppet
+     scala
+     shell-scripts
      syntax-checking
      version-control
+     yaml
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -166,6 +172,9 @@ before layers configuration."
 layers configuration."
   (global-linum-mode)
   (setq powerline-default-separator 'nil)
+  (setq truncate-lines t
+        ;;x-select-enable-clipboard t
+        x-select-enable-primary t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

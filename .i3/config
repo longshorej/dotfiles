@@ -157,19 +157,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-#bindsym $mod+x [urgent=latest] focus
-
 workspace_auto_back_and_forth yes
 bindsym $mod+0 workspace back_and_forth
 
-workspace_layout default
+workspace_layout tabbed
 
 default_orientation horizontal
 
-#for_window [class="Firefox"] focus child, layout tabbed, focus
-#for_window [class="jetbrains-idea"] focus child, layout tabbed, focus
-#for_window [class="VirtualBox" title="Oracle VM VirtualBox Manager"] floating enable
-#for_window [class="Nautilus"] floating enable
 for_window [class="Firefox" window_role="Preferences"] floating enable
 for_window [class="Firefox" window_role="Organizer"] floating enable
 for_window [class="Firefox" window_role="page-info"] floating enable

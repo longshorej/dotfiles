@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -t 0 ]; then
-  emacsclient -t "$@" || (/usr/bin/emacs --daemon && emacsclient -t "$@")
-else
-  emacsclient -c "$@" || (/usr/bin/emacs --daemon && emacsclient -c -a "$@")
-fi  
