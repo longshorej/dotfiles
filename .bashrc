@@ -117,4 +117,25 @@ gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
 gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 
 # terminal colors
-source $HOME/bin/base16-default.dark.sh
+source $HOME/.base16-default.dark.sh
+
+
+readonly BG_RED="\[$(tput setab 1)\]"
+readonly BG_GREEN="\[$(tput setab 2)\]"
+
+readonly DIM="\[$(tput dim)\]"
+readonly REVERSE="\[$(tput rev)\]"
+readonly RESET="\[$(tput sgr0)\]"
+readonly BOLD="\[$(tput bold)\]"
+
+readonly PS_SYMBOL=$PS_SYMBOL_LINUX
+
+ps1() {
+  if [ $? -eq 0 ]; then
+    PS1="$BG_GREEN\w \$$RESET "
+  else
+    PS1="$BG_RED\w \$$RESET "
+  fi
+}
+
+PROMPT_COMMAND=ps1

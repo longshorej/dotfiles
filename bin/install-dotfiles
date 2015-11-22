@@ -36,6 +36,7 @@ systemctl --user start emacs
 sudo apt-get install -y \
   ack-grep \
   build-essential \
+  curl \
   ffmpeg \
   emacs \
   i3 \
