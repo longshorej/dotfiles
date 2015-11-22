@@ -48,6 +48,7 @@ sudo apt-get install -y \
   openjdk-8-source \
   openssh-client \
   parcellite \
+  python3-pip \
   rofi \
   rsyslog \
   silversearcher-ag \

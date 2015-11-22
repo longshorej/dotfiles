@@ -119,9 +119,10 @@ gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 # terminal colors
 source $HOME/.base16-default.dark.sh
 
-
 readonly BG_RED="\[$(tput setab 1)\]"
 readonly BG_GREEN="\[$(tput setab 2)\]"
+readonly BG_CYAN="\[$(tput setab 6)\]"
+readonly BG_BLUE="\[$(tput setab 13)\]"
 
 readonly DIM="\[$(tput dim)\]"
 readonly REVERSE="\[$(tput rev)\]"
@@ -131,11 +132,13 @@ readonly BOLD="\[$(tput bold)\]"
 readonly PS_SYMBOL=$PS_SYMBOL_LINUX
 
 ps1() {
-  if [ $? -eq 0 ]; then
-    PS1="$BG_GREEN\w \$$RESET "
+  local CMD=$?
+  if [ $CMD -eq 0 ]; then
+    PS1="$BG_GREEN-> $CMD$RESET\n\n$BG_BLUE\w \$$RESET "
   else
-    PS1="$BG_RED\w \$$RESET "
+    PS1="$BG_RED-> $CMD$RESET\n\n$BG_BLUE\w \$$RESET "
   fi
 }
 
 PROMPT_COMMAND=ps1
+ #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
