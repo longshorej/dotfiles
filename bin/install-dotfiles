@@ -1,6 +1,12 @@
 #!/bin/bash
 
+set -e
+
+which sudo > /dev/null 2>&1 || (echo ">> install sudo" && exit 1)
+
 cd ${0%/*}
+
+INITIAL_SUM=`md5sum $BASH_SOURCE`
 
 pwd=`pwd`
 echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
@@ -10,5 +16,42 @@ chmod +x ~/bin/install-dotfiles
 cd ..
 
 git pull
-git submodule foreach git pull origin master
+#git submodule foreach git pull origin master
+
+git submodule foreach -q --recursive \
+  'git checkout \
+  $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master)'
 rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
+
+NOW_SUM=`cd bin && md5sum $BASH_SOURCE`
+
+if [[ $INITIAL_SUM != $NOW_SUM ]]; then
+  echo ">> install-dotfiles changed, restarting"
+  exec ./bin/install-dotfiles
+fi
+
+systemctl --user enable emacs
+systemctl --user start emacs
+
+sudo apt-get install -y \
+  ack-grep \
+  build-essential \
+  ffmpeg \
+  emacs \
+  i3 \
+  network-manager-gnome \
+  network-manager-vpnc \
+  network-manager-vpnc-gnome \
+  nodejs \
+  openjdk-8-jdk \
+  openjdk-8-source \
+  openssh-client \
+  parcellite \
+  rofi \
+  rsyslog \
+  silversearcher-ag \
+  unrar \
+  unzip \
+  vpnc \
+  xautolock \
+  youtube-dl

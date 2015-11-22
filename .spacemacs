@@ -17,24 +17,29 @@
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      base16-default-dark
+     c-c++
      emacs-lisp
      git
+     haskell
      html
      java
      javascript
      markdown
-     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      php
      puppet
+     python
+     ruby
+     ruby-on-rails
      scala
      shell-scripts
      syntax-checking
+     typescript
      version-control
      yaml
      )
