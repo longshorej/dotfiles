@@ -18,9 +18,7 @@ cd ..
 git pull
 #git submodule foreach git pull origin master
 
-git submodule foreach -q --recursive \
-  'git checkout \
-  $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master)'
+git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull'
 rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
 NOW_SUM=`cd bin && md5sum $BASH_SOURCE`

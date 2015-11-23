@@ -121,8 +121,7 @@ source $HOME/.base16-default.dark.sh
 
 readonly BG_RED="\[$(tput setab 1)\]"
 readonly BG_GREEN="\[$(tput setab 2)\]"
-readonly BG_CYAN="\[$(tput setab 6)\]"
-readonly BG_BLUE="\[$(tput setab 13)\]"
+readonly BG_PINK="\[$(tput setab 13)\]"
 
 readonly DIM="\[$(tput dim)\]"
 readonly REVERSE="\[$(tput rev)\]"
@@ -131,13 +130,23 @@ readonly BOLD="\[$(tput bold)\]"
 
 readonly PS_SYMBOL=$PS_SYMBOL_LINUX
 
+PS1_STARTED=0
+
 ps1() {
   local CMD=$?
-  if [ $CMD -eq 0 ]; then
-    PS1="$BG_GREEN-> $CMD$RESET\n\n$BG_BLUE\w \$$RESET "
+  PS1=""
+
+  if [[ $PS1_STARTED -ne 0 ]]; then
+    if [ $CMD -eq 0 ]; then
+      PS1="$BG_GREEN-> $CMD$RESET\n\n"
+    else
+      PS1="$BG_RED-> $CMD$RESET\n\n"
+    fi
   else
-    PS1="$BG_RED-> $CMD$RESET\n\n$BG_BLUE\w \$$RESET "
+    PS1_STARTED=1
   fi
+
+  PS1="$PS1$BG_PINK\w \$$RESET "
 }
 
 PROMPT_COMMAND=ps1
