@@ -37,6 +37,7 @@ sudo apt-get install -y \
   curl \
   ffmpeg \
   emacs \
+  feh \
   i3 \
   network-manager-gnome \
   network-manager-vpnc \
