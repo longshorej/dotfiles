@@ -144,8 +144,12 @@ ps1() {
     PS1_STARTED=1
   fi
 
-  PS1="$PS1$BG_PINK\w \$\033]0;\w\007$RESET "
+  PS1="$PS1$BG_PINK\w \$$RESET "
 }
 
 PROMPT_COMMAND=ps1
  #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+
+if [ -e "$HOME/.bashrclocal" ]; then
+  source "$HOME/.bashrclocal"
+fi

@@ -2,7 +2,7 @@
 
 set -e
 
-which sudo > /dev/null 2>&1 || (echo ">> install sudo" && exit 1)
+which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
 
 cd ${0%/*}
 
@@ -24,9 +24,19 @@ rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/i
 NOW_SUM=`cd bin && md5sum $BASH_SOURCE`
 
 if [[ $INITIAL_SUM != $NOW_SUM ]]; then
-  echo ">> install-dotfiles changed, restarting"
+  echo "* install-dotfiles changed, restarting"
   exec ./bin/install-dotfiles
 fi
+
+for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
+  if [ -d "$MODULE" ]; then
+     echo "* installing module $MODULE"
+
+     (cd "$MODULE" && git pull)
+     (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
+     (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
+  fi
+done
 
 systemctl --user enable emacs
 systemctl --user start emacs
