@@ -128,8 +128,6 @@ readonly REVERSE="\[$(tput rev)\]"
 readonly RESET="\[$(tput sgr0)\]"
 readonly BOLD="\[$(tput bold)\]"
 
-readonly PS_SYMBOL=$PS_SYMBOL_LINUX
-
 PS1_STARTED=0
 
 ps1() {
@@ -146,7 +144,7 @@ ps1() {
     PS1_STARTED=1
   fi
 
-  PS1="$PS1$BG_PINK\w \$$RESET "
+  PS1="$PS1$BG_PINK\w \$\033]0;\w\007$RESET "
 }
 
 PROMPT_COMMAND=ps1
