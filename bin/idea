@@ -12,4 +12,4 @@ fi
 
 export JAVA_HOME="$HOME/programs/jdk7"
 
-exec "$HOME/programs/idea/bin/idea.sh"
+exec "$HOME/programs/idea/bin/idea.sh" "$@"
