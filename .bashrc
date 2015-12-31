@@ -142,6 +142,7 @@ ps1() {
     fi
   else
     PS1_STARTED=1
+    PS1="\n¯\_(ツ)_/¯\n\n"
   fi
 
   PS1="$PS1$BG_PINK\w \$$RESET "
