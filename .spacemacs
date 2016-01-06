@@ -37,6 +37,7 @@
      ruby
      ruby-on-rails
      scala
+     shell
      shell-scripts
      syntax-checking
      typescript
@@ -180,6 +181,13 @@ layers configuration."
   (setq truncate-lines t
         ;;x-select-enable-clipboard t
         x-select-enable-primary t)
+  (typescript-indent-level 2)
+  (web-mode-code-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-enable-auto-indentation t)
+  (web-mode-indent-style 2)
+  (web-mode-markup-indent-offset 2)
+  (web-mode-sql-indent-offset 2)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

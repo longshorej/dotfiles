@@ -112,7 +112,7 @@ if ! shopt -oq posix; then
 fi
 
 # gnome configuration
-gsettings set org.gnome.nm-applet disable-connected-notifications "true"
+gsettings set org.gnome.nm-applet disable-connected-notifications true
 gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
 gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting "full"
@@ -123,7 +123,7 @@ gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.desktop.background picture-uri "file:///$HOME/pictures/backgrounds/solar_system-wide.jpg"
 gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
-
+gconftool-2 --type=string --set /desktop/gnome/interface/gtk_key_theme Emacs
 
 # terminal colors
 source $HOME/.base16-default.dark.sh

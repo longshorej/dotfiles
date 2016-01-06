@@ -4,6 +4,8 @@ set -e
 
 which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
 
+sudo echo "* running install-dotfiles"
+
 cd ${0%/*}
 
 INITIAL_SUM=`md5sum $BASH_SOURCE`
@@ -48,7 +50,11 @@ sudo apt-get install -y \
   ffmpeg \
   emacs \
   feh \
+  gedit \
+  gnome-terminal \
+  gnome-themes-standard \
   i3 \
+  irssi \
   network-manager-gnome \
   network-manager-vpnc \
   network-manager-vpnc-gnome \
@@ -57,6 +63,7 @@ sudo apt-get install -y \
   openjdk-8-source \
   openssh-client \
   parcellite \
+  pidgin \
   python3-pip \
   rofi \
   rsyslog \
