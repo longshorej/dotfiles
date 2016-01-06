@@ -66,3 +66,10 @@ sudo apt-get install -y \
   vpnc \
   xautolock \
   youtube-dl
+
+
+xdg-mime default eog.desktop image/png
+xdg-mime default eog.desktop image/jpg
+xdg-mime default eog.desktop image/gif
+xdg-mime default evince.desktop application/pdf
+
