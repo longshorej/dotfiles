@@ -18,9 +18,11 @@ chmod +x ~/bin/install-dotfiles
 cd ..
 
 git pull
-#git submodule foreach git pull origin master
+git submodule foreach --recursive git reset --hard
+git submodule foreach git fetch origin master
+git submodule foreach git reset --hard FETCH_HEAD
+git submodule foreach git clean -df
 
-git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull'
 rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
 NOW_SUM=`cd bin && md5sum $BASH_SOURCE`
@@ -40,12 +42,10 @@ for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
   fi
 done
 
-systemctl --user enable emacs
-systemctl --user start emacs
-
 sudo apt-get install -y \
   ack-grep \
   build-essential \
+  cifs-utils \
   curl \
   ffmpeg \
   emacs \
@@ -55,6 +55,7 @@ sudo apt-get install -y \
   gnome-themes-standard \
   i3 \
   irssi \
+  libreoffice \
   network-manager-gnome \
   network-manager-vpnc \
   network-manager-vpnc-gnome \
@@ -63,8 +64,10 @@ sudo apt-get install -y \
   openjdk-8-source \
   openssh-client \
   parcellite \
+  pavucontrol \
   pidgin \
   python3-pip \
+  rdesktop \
   rofi \
   rsyslog \
   silversearcher-ag \
@@ -73,3 +76,6 @@ sudo apt-get install -y \
   vpnc \
   xautolock \
   youtube-dl
+
+systemctl --user enable emacs
+systemctl --user start emacs
