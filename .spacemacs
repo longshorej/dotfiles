@@ -21,6 +21,7 @@
      ;; better-defaults
      base16-default-dark
      c-c++
+     csharp
      emacs-lisp
      git
      haskell
