@@ -75,7 +75,7 @@ before layers configuration."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed.
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
    dotspacemacs-startup-lists '(recents projects)
@@ -95,10 +95,10 @@ before layers configuration."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Envy Code R"
-                               :size 13
+                               :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -178,8 +178,13 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-linum-mode)
-  (setq powerline-default-separator 'nil)
+
   (setq truncate-lines t
+        tab-width 2
+        x-select-enable-primary t
+        sh-basic-offset 2
+        indent-tabs-mode 'nil
+        powerline-default-separator 'nil
         ;;x-select-enable-clipboard t
         x-select-enable-primary t)
 )

@@ -4,11 +4,50 @@ set -e
 
 which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
 
-sudo echo "* running install-dotfiles"
+echo "* running install-dotfiles"
 
 cd ${0%/*}
 
 INITIAL_SUM=`md5sum $BASH_SOURCE`
+
+PACKAGES=(
+  abcde
+  ack-grep
+  build-essential
+  cifs-utils
+  curl
+  ffmpeg
+  flac
+  emacs
+  feh
+  gedit
+  glyrc
+  gnome-terminal
+  gnome-themes-standard
+  i3
+  irssi
+  libreoffice
+  network-manager-gnome
+  network-manager-vpnc
+  network-manager-vpnc-gnome
+  nodejs
+  openjdk-8-jdk
+  openjdk-8-source
+  openssh-client
+  parcellite
+  pavucontrol
+  pidgin
+  python3-pip
+  rdesktop
+  rofi
+  rsyslog
+  silversearcher-ag
+  unrar
+  unzip
+  vpnc
+  xautolock
+  youtube-dl
+)
 
 pwd=`pwd`
 echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
@@ -27,10 +66,9 @@ rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/i
 
 NOW_SUM=`cd bin && md5sum $BASH_SOURCE`
 
-if [[ $INITIAL_SUM != $NOW_SUM ]]; then
-  echo "* install-dotfiles changed, restarting"
-  exec ./bin/install-dotfiles
-fi
+for PACKAGE in "${PACKAGES[@]}"; do
+  dpkg -s "$PACKAGE" >/dev/null 2>&1 || sudo apt-get -y install "$PACKAGE"
+done
 
 for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
   if [ -d "$MODULE" ]; then
@@ -42,40 +80,6 @@ for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
   fi
 done
 
-sudo apt-get install -y \
-  ack-grep \
-  build-essential \
-  cifs-utils \
-  curl \
-  ffmpeg \
-  emacs \
-  feh \
-  gedit \
-  gnome-terminal \
-  gnome-themes-standard \
-  i3 \
-  irssi \
-  libreoffice \
-  network-manager-gnome \
-  network-manager-vpnc \
-  network-manager-vpnc-gnome \
-  nodejs \
-  openjdk-8-jdk \
-  openjdk-8-source \
-  openssh-client \
-  parcellite \
-  pavucontrol \
-  pidgin \
-  python3-pip \
-  rdesktop \
-  rofi \
-  rsyslog \
-  silversearcher-ag \
-  unrar \
-  unzip \
-  vpnc \
-  xautolock \
-  youtube-dl
 
 xdg-mime default eog.desktop image/png
 xdg-mime default eog.desktop image/jpg
