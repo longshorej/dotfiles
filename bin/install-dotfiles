@@ -2,6 +2,12 @@
 
 set -e
 
+function join {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
+
 which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
 
 echo "* running install-dotfiles"
@@ -28,6 +34,7 @@ PACKAGES=(
   gnome-themes-standard
   i3
   icedove
+  icedtea-8-plugin
   iceweasel
   irssi
   libreoffice
@@ -56,9 +63,13 @@ PACKAGES=(
 
 pwd=`pwd`
 mkdir -p ~/bin
-echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
-echo "exec $pwd/install-dotfiles" >> ~/bin/install-dotfiles
-chmod +x ~/bin/install-dotfiles
+
+if [ ! -f ~/bin/install-dotfiles ]; then
+  echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
+  echo "exec $pwd/install-dotfiles" >> ~/bin/install-dotfiles
+  chmod +x ~/bin/install-dotfiles
+  exec ~/bin/install-files
+fi
 
 cd ..
 
@@ -72,9 +83,17 @@ rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/i
 
 NOW_SUM=`cd bin && md5sum $BASH_SOURCE`
 
+ALL_INSTALLED=1
+
 for PACKAGE in "${PACKAGES[@]}"; do
-  dpkg -s "$PACKAGE" >/dev/null 2>&1 || sudo apt-get -y install "$PACKAGE"
+  dpkg -s "$PACKAGE" >/dev/null 2>&1 || ALL_INSTALLED=0
 done
+
+if [ $ALL_INSTALLED -eq 0 ]; then
+  sudo apt-get update
+  sudo apt-get dist-upgrade
+  sudo apt-get install -y `join " " "${PACKAGES[@]}"`
+fi
 
 for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
   if [ -d "$MODULE" ]; then
@@ -86,11 +105,7 @@ for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
   fi
 done
 
-
-xdg-mime default eog.desktop image/png
-xdg-mime default eog.desktop image/jpg
-xdg-mime default eog.desktop image/gif
-xdg-mime default evince.desktop application/pdf
+sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 systemctl --user enable emacs
 systemctl --user start emacs
