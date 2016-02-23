@@ -6,16 +6,18 @@ which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
 
 echo "* running install-dotfiles"
 
-cd ${0%/*}
-
 INITIAL_SUM=`md5sum $BASH_SOURCE`
+
+cd ${0%/*}
 
 PACKAGES=(
   abcde
   ack-grep
   build-essential
   cifs-utils
+  chromium
   curl
+  dconf-cli
   ffmpeg
   flac
   emacs
@@ -25,6 +27,8 @@ PACKAGES=(
   gnome-terminal
   gnome-themes-standard
   i3
+  icedove
+  iceweasel
   irssi
   libreoffice
   network-manager-gnome
@@ -42,14 +46,16 @@ PACKAGES=(
   rofi
   rsyslog
   silversearcher-ag
-  unrar
+#  thunderbird
   unzip
   vpnc
   xautolock
+  xorg
   youtube-dl
 )
 
 pwd=`pwd`
+mkdir -p ~/bin
 echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
 echo "exec $pwd/install-dotfiles" >> ~/bin/install-dotfiles
 chmod +x ~/bin/install-dotfiles
