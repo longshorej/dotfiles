@@ -42,6 +42,7 @@ PACKAGES=(
   rofi
   rsyslog
   silversearcher-ag
+  unifont
   unrar
   unzip
   vpnc
