@@ -66,7 +66,7 @@ before layers configuration."
   (setq-default
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style 'hybrid
    ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -95,10 +95,10 @@ before layers configuration."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Envy Code R"
-                               :size 14
+                               :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -181,12 +181,12 @@ layers configuration."
 
   (setq truncate-lines t
         tab-width 2
-        x-select-enable-primary t
         sh-basic-offset 2
         indent-tabs-mode 'nil
         powerline-default-separator 'nil
-        ;;x-select-enable-clipboard t
-        x-select-enable-primary t)
+        x-select-enable-clipboard t
+        x-select-enable-primary t
+        dotspacemacs-mode-line-unicode-symbols 'nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
