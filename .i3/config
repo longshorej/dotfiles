@@ -22,7 +22,7 @@ set $mod Mod1
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-font xft:Tahoma 10
+font xft:Envy Code R 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -76,8 +76,8 @@ bindsym $mod+z split v
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+Shift+w layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+Shift+w layout tabbed
+bindsym $mod+w layout stacking
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -160,9 +160,12 @@ workspace_auto_back_and_forth yes
 bindsym $mod+0 workspace back_and_forth
 
 # stacked, tabbed, default
-workspace_layout default
+workspace_layout stacked
 
 default_orientation horizontal
+
+# autofocus new windows
+for_window [class="^.*$"] focus
 
 for_window [class="Firefox" window_role="Preferences"] floating enable
 for_window [class="Firefox" window_role="Organizer"] floating enable
@@ -179,16 +182,19 @@ for_window [class="Gnome-terminal" window_role="floating"] floating enable
 for_window [instance="gimp"] floating enable
 
 
-#assign [class="Pidgin"] 8
-#assign [class="Thunderbird"] 8
-#assign [class="Firefox"] 1
+
+assign [class="Thunderbird"] 8
+assign [class="Firefox"] 1
+assign [class="Pidgin"] 8
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status
+        position bottom
         colors {
           background #151515
-          focused_workspace #36515C #36515C #F5F5F5
+          focused_workspace #FFFFFF #11749C #F5F5F5
           inactive_workspace #505050 #151515 #F5F5F5
           urgent_workspace #505050 #AC4142 #F5F5F5
         }
@@ -197,10 +203,10 @@ bar {
 new_window pixel 10
 new_float pixel 10
 
-client.focused #36515C #84C2DB  #FFFFFF #90A959
+client.focused #FFFFFF #11749C  #FFFFFF #90A959
 #client.focused #90A956 #90A956 #FFFFFF #FFFFFF
 client.unfocused #505050 #252525 #f5f5f5
-focus_follows_mouse no
+focus_follows_mouse yes
 
 #exec --no-startup-id gnome-settings-daemon
 #exec --no-startup-id compton -Gb --backend glx --vsync opengl
@@ -209,6 +215,7 @@ exec --no-startup-id xbanish
 exec --no-startup-id parcellite
 exec --no-startup-id xset -b
 exec --no-startup-id xset m 1 1
+exec --no-startup-id xset r rate 300 25
 exec --no-startup-id feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id xset dpms 600

@@ -182,8 +182,11 @@ layers configuration."
   (setq truncate-lines t
         tab-width 2
         sh-basic-offset 2
+        js2-basic-offset 2
+        js-indent-level 2
         indent-tabs-mode 'nil
         powerline-default-separator 'nil
+        create-lockfiles 'nil
         x-select-enable-clipboard t
         x-select-enable-primary t
         dotspacemacs-mode-line-unicode-symbols 'nil)
