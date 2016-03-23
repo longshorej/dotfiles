@@ -113,18 +113,18 @@ if ! shopt -oq posix; then
 fi
 
 # gnome configuration
-gsettings set org.gnome.nm-applet disable-connected-notifications true
-gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
-gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
-gsettings set org.gnome.settings-daemon.plugins.xsettings hinting "full"
-gsettings set org.gnome.desktop.wm.preferences titlebar-font "Bitstream Vera Sans 10"
-gsettings set org.gnome.desktop.interface font-name "Bitstream Vera Sans 10"
-gsettings set org.gnome.desktop.interface document-font-name "Bitstream Vera Sans 10"
-gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
-gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
-gsettings set org.gnome.desktop.background picture-uri "file:///$HOME/pictures/backgrounds/solar_system-wide.jpg"
-gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
-gconftool-2 --type=string --set /desktop/gnome/interface/gtk_key_theme Emacs
+#gsettings set org.gnome.nm-applet disable-connected-notifications true
+#gsettings set org.gnome.Terminal.Legacy.Settings confirm-close false
+#gsettings set org.gnome.desktop.interface gtk-key-theme "Emacs"
+#gsettings set org.gnome.settings-daemon.plugins.xsettings hinting "full"
+#gsettings set org.gnome.desktop.wm.preferences titlebar-font "Bitstream Vera Sans 10"
+#gsettings set org.gnome.desktop.interface font-name "Bitstream Vera Sans 10"
+#gsettings set org.gnome.desktop.interface document-font-name "Bitstream Vera Sans 10"
+#gsettings set org.gnome.settings-daemon.plugins.xsettings rgba-order 'rgb'
+#gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
+#gsettings set org.gnome.desktop.background picture-uri "file:///$HOME/pictures/backgrounds/solar_system-wide.jpg"
+#gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
+#gconftool-2 --type=string --set /desktop/gnome/interface/gtk_key_theme Emacs
 
 # terminal colors
 source $HOME/.base16-default.dark.sh
@@ -140,6 +140,10 @@ readonly BOLD="\[$(tput bold)\]"
 
 PS1_STARTED=0
 
+settitle() {
+  printf "\e]0;$@\a"
+}
+
 ps1() {
   local CMD=$?
   PS1=""
@@ -152,10 +156,12 @@ ps1() {
     fi
   else
     PS1_STARTED=1
-    PS1="\n¯\_(ツ)_/¯\n\n"
+    #PS1="\n¯\_(ツ)_/¯\n\n"
+    PS1=""
   fi
 
   PS1="$PS1$BG_PINK\w \$$RESET "
+  settitle "$PWD"
 }
 
 PROMPT_COMMAND=ps1
