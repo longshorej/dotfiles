@@ -1,1 +1,19 @@
 Xcursor.theme: Adwaita
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt.font:     xft:envy code r:size=12:antialias=true
+URxvt.boldFont: xft:envy code r:bold:size=12:antialias=true
+URxvt*scrollBar: false
+URxvt*background: Black
+URxvt*foreground: White
+URxvt.letterSpace: -1
+
+

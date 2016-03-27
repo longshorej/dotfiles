@@ -28,7 +28,7 @@ PACKAGES=(
   flac
   emacs
   feh
-  gedit
+  #gedit
   glyrc
   #gnome-terminal
   #gnome-themes-standard
@@ -39,6 +39,9 @@ PACKAGES=(
   iperf
   irssi
   libreoffice
+  libx11-dev
+  libxft-dev
+  libxext-dev
   #network-manager-gnome
   #network-manager-vpnc
   #network-manager-vpnc-gnome
@@ -46,25 +49,30 @@ PACKAGES=(
   openjdk-8-jdk
   openjdk-8-source
   openssh-client
-  parcellite
-  pavucontrol
+  #parcellite
+  #pavucontrol
   pidgin
+  php
   python3-pip
   rdesktop
   rofi
-  rsyslog
+  rxvt-unicode
+  #rsyslog
+  scala
   silversearcher-ag
+  tmux
   unifont
   #unrar
   unzip
   vpnc
   xautolock
   xorg
+  xterm
   youtube-dl
 )
 
 pwd=`pwd`
-mkdir -p ~/bin
+mkdir -p ~/bin ~/work ~/programs
 
 if [ ! -f ~/bin/install-dotfiles ]; then
   echo "#!/usr/bin/env bash" > ~/bin/install-dotfiles
@@ -81,7 +89,7 @@ git submodule foreach git fetch origin master
 git submodule foreach git reset --hard FETCH_HEAD
 git submodule foreach git clean -df
 
-rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
+rsync -rcip --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
 # TODO restart the script if install-dotfiles has changed
 
@@ -111,3 +119,5 @@ sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 
 systemctl --user enable emacs
 systemctl --user start emacs
+
+#(cp .st/config.h work/st/config.h && cd work/st && patch < ../../.st/st-git-20151217-scrollback.diff && make clean && make && cp -f ./st ~/bin/)

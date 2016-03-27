@@ -190,6 +190,8 @@ layers configuration."
         x-select-enable-clipboard t
         x-select-enable-primary t
         dotspacemacs-mode-line-unicode-symbols 'nil)
+
+;;  (set-background-color "#000000")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
