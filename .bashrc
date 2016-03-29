@@ -139,9 +139,18 @@ readonly RESET="\[$(tput sgr0)\]"
 readonly BOLD="\[$(tput bold)\]"
 
 PS1_STARTED=0
+PS1_COMMAND=""
 
 settitle() {
   printf "\e]0;$@\a"
+}
+
+updatetitle() {
+  if [ "$BASH_COMMAND" == "ps1" ]; then
+    settitle "$PWD - bash"
+  else
+    settitle "$BASH_COMMAND - $PWD - bash"
+  fi
 }
 
 ps1() {
@@ -161,9 +170,10 @@ ps1() {
   fi
 
   PS1="$PS1$BG_PINK\w \$$RESET "
-  settitle "$PWD"
+  PS1_COMMAND=""
+  #settitle "$BASH_COMMAND - $PWD - bash"
 }
-
+trap "updatetitle" DEBUG
 PROMPT_COMMAND=ps1
  #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 

@@ -22,14 +22,14 @@ set $mod Mod1
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-font xft:Envy Code R 11
+font xft:Envy Code R 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec urxvt 
-bindsym $mod+Shift+Return exec urxvt --role floating
+bindsym $mod+Shift+Return exec urxvt urxvt "#FFFFFF" -foreground "#000000"
 
 # screenshot
 
@@ -221,3 +221,4 @@ exec --no-startup-id feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id xset dpms 600
 exec --no-startup-id xautolock -time 5 -locker "i3lock -c 333333"
+exec --no-startup-id compton -CGb --backend glx --vsync opengl

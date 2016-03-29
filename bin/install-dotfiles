@@ -22,6 +22,7 @@ PACKAGES=(
   build-essential
   cifs-utils
   chromium
+  compton
   curl
   dconf-cli
   ffmpeg
@@ -59,6 +60,7 @@ PACKAGES=(
   rxvt-unicode
   #rsyslog
   scala
+  screen
   silversearcher-ag
   tmux
   unifont
@@ -100,8 +102,8 @@ for PACKAGE in "${PACKAGES[@]}"; do
 done
 
 if [ $ALL_INSTALLED -eq 0 ]; then
-  sudo apt-get update
-  sudo apt-get dist-upgrade
+  sudo apt-get -y update
+  sudo apt-get -y dist-upgrade
   sudo apt-get install -y `join " " "${PACKAGES[@]}"`
 fi
 
@@ -116,6 +118,7 @@ for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
 done
 
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
+sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
 systemctl --user enable emacs
 systemctl --user start emacs
