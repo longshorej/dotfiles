@@ -45,6 +45,7 @@ PACKAGES=(
   #network-manager-gnome
   #network-manager-vpnc
   #network-manager-vpnc-gnome
+  nmap
   nodejs
   openjdk-8-jdk
   openjdk-8-source
