@@ -43,18 +43,19 @@ PACKAGES=(
   libx11-dev
   libxft-dev
   libxext-dev
-  #network-manager-gnome
-  #network-manager-vpnc
-  #network-manager-vpnc-gnome
+  network-manager-gnome
+  network-manager-vpnc
+  network-manager-vpnc-gnome
   nmap
   nodejs
   openjdk-8-jdk
   openjdk-8-source
   openssh-client
-  #parcellite
-  #pavucontrol
+  parcellite
+  pavucontrol
   pidgin
   php
+  pulseaudio
   python3-pip
   rdesktop
   rofi
