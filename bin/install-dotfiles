@@ -25,6 +25,7 @@ PACKAGES=(
   compton
   curl
   dconf-cli
+  debootstrap
   ffmpeg
   flac
   emacs
@@ -37,17 +38,22 @@ PACKAGES=(
   icedove
   icedtea-8-plugin
   iceweasel
+  iotop
   iperf
   irssi
   libreoffice
   libx11-dev
   libxft-dev
   libxext-dev
+  mariadb-client
+  mariadb-server
+  mplayer
   network-manager-gnome
   network-manager-vpnc
   network-manager-vpnc-gnome
   nmap
   nodejs
+  ntp
   openjdk-8-jdk
   openjdk-8-source
   openssh-client
@@ -64,6 +70,7 @@ PACKAGES=(
   scala
   screen
   silversearcher-ag
+  sxiv
   tmux
   unifont
   #unrar
@@ -73,6 +80,7 @@ PACKAGES=(
   xorg
   xterm
   youtube-dl
+  zathura
 )
 
 pwd=`pwd`
