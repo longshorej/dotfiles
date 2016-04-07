@@ -2,3 +2,6 @@
 	path = .emacs.d
   url = https://github.com/syl20bnr/spacemacs
   branch = master
+[submodule ".vim/bundle/Vundle.vim"]
+	path = .vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git

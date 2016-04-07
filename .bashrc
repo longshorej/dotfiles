@@ -176,7 +176,3 @@ ps1() {
 trap "updatetitle" DEBUG
 PROMPT_COMMAND=ps1
  #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-
-if [ -e "$HOME/.bashrclocal" ]; then
-  source "$HOME/.bashrclocal"
-fi

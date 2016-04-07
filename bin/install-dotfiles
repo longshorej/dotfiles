@@ -22,6 +22,7 @@ PACKAGES=(
   build-essential
   cifs-utils
   chromium
+  cmus
   compton
   curl
   dconf-cli
@@ -34,6 +35,7 @@ PACKAGES=(
   glyrc
   #gnome-terminal
   #gnome-themes-standard
+  haskell-platform
   i3
   icedove
   icedtea-8-plugin
@@ -41,6 +43,7 @@ PACKAGES=(
   iotop
   iperf
   irssi
+  libnotify-bin
   libreoffice
   libx11-dev
   libxft-dev
@@ -59,8 +62,10 @@ PACKAGES=(
   openssh-client
   parcellite
   pavucontrol
-  pidgin
   php
+  pidgin
+  pidgin-libnotify
+  pigz
   pulseaudio
   python3-pip
   rdesktop
@@ -69,7 +74,9 @@ PACKAGES=(
   #rsyslog
   scala
   screen
+  scrot
   silversearcher-ag
+  subversion
   sxiv
   tmux
   unifont
@@ -101,7 +108,7 @@ git submodule foreach git fetch origin master
 git submodule foreach git reset --hard FETCH_HEAD
 git submodule foreach git clean -df
 
-rsync -rcip --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
+rsync -rcip --links --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
 # TODO restart the script if install-dotfiles has changed
 
@@ -130,7 +137,7 @@ done
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
-systemctl --user enable emacs
-systemctl --user start emacs
+#systemctl --user enable emacs
+#systemctl --user start emacs
 
 #(cp .st/config.h work/st/config.h && cd work/st && patch < ../../.st/st-git-20151217-scrollback.diff && make clean && make && cp -f ./st ~/bin/)
