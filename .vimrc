@@ -1,43 +1,65 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
+  !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim
+endif
 
-" set the runtime path to include Vundle and initialize
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
+
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'tpope/vim-rsi'
+Plugin 'chriskempson/base16-vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
+Plugin 'osyo-manga/vim-over'
+Plugin 'luochen1990/rainbow'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call vundle#end()
+filetype plugin indent on
+
+
+" Use a blinking upright bar cursor in Insert mode, a blinking block in normal
+if &term == 'rxvt-unicode'
+  let &t_SI = "\<Esc>[5 q"
+  let &t_EI = "\<Esc>[1 q"
+endif
+set gcr=n:blinkon0
+
+let g:rainbow_active = 1
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+let g:ctrlp_working_path_mode=0
+let mapleader=' '
+
+colorscheme base16-default
+filetype on
+syntax on
+set nocompatible
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/.ensime*,*/webjars,*/target,*/wms1/data,*/wms2/*/managed
+set title titlestring=%F\ -\ vim
+set number
+set colorcolumn=120
+set laststatus=2
+set foldcolumn=0
+set noswapfile
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set mouse=a
+set nowrap
+set hlsearch
+
+:nnoremap <CR> :nohlsearch<CR><CR>
+map <C-n> :NERDTreeToggle<CR>
+
+
+"set autochdir

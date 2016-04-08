@@ -28,8 +28,7 @@ font xft:Envy Code R 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt 
-bindsym $mod+Shift+Return exec urxvt urxvt "#FFFFFF" -foreground "#000000"
+bindsym $mod+Return exec bash -c 'exec urxvt -cd "$(xcwd)"'
 
 # screenshot
 

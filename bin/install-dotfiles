@@ -83,6 +83,7 @@ PACKAGES=(
   #unrar
   unzip
   vpnc
+  vim
   xautolock
   xorg
   xterm
