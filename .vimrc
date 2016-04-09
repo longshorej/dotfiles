@@ -1,14 +1,13 @@
+set nocompatible
+
 if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
   !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim
 endif
 
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rsi'
 Plugin 'chriskempson/base16-vim'
@@ -22,17 +21,18 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'rking/ag.vim'
 Plugin 'osyo-manga/vim-over'
 Plugin 'luochen1990/rainbow'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-sensible'
 
 call vundle#end()
 filetype plugin indent on
 
 
 " Use a blinking upright bar cursor in Insert mode, a blinking block in normal
-if &term == 'rxvt-unicode'
+if &term =~ 'rxvt-unicode'
   let &t_SI = "\<Esc>[5 q"
   let &t_EI = "\<Esc>[1 q"
 endif
-set gcr=n:blinkon0
 
 let g:rainbow_active = 1
 let g:ctrlp_max_files=0
@@ -40,10 +40,10 @@ let g:ctrlp_max_depth=40
 let g:ctrlp_working_path_mode=0
 let mapleader=' '
 
+set background=dark
 colorscheme base16-default
 filetype on
 syntax on
-set nocompatible
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/.ensime*,*/webjars,*/target,*/wms1/data,*/wms2/*/managed
 set title titlestring=%F\ -\ vim
 set number
@@ -51,15 +51,87 @@ set colorcolumn=120
 set laststatus=2
 set foldcolumn=0
 set noswapfile
+set nobackup
+set nowb
 set expandtab
 set tabstop=2
 set shiftwidth=2
 set mouse=a
 set nowrap
 set hlsearch
+set scrolloff=99999
+set virtualedit=all
+set autoread
 
-:nnoremap <CR> :nohlsearch<CR><CR>
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
 map <C-n> :NERDTreeToggle<CR>
 
 
 "set autochdir
+
+
+" Use ag over grep
+set grepprg=ag\ --nogroup\ --nocolor
+
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+" ag is fast enough that CtrlP doesn't need to cache
+let g:ctrlp_use_caching = 0
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" bind \ (backward slash) to grep shortcut
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+
+" Make sure that unsaved buffers that are to be put in the background are 
+" allowed to go in there (ie. the "must save first" error doesn't come up)
+set hidden
+
+
+" Don't update the display while executing macros
+set lazyredraw
+
+
+" Toggle paste mode
+nmap <silent> <leader>p :set invpaste<CR>:set paste?<CR>
+
+" cd to the directory containing the file in the buffer
+nmap <silent> <leader>cd :lcd %:h<CR>
+nmap <silent> <leader>cr :lcd <c-r>=FindCodeDirOrHome()<cr><cr>
+nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
+
+
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+function! FindCodeDirOrHome()
+  let filedir = expand('%:p:h')
+  if isdirectory(filedir)
+    if HasGitRepo(filedir)
+      let cmd = 'bash -c "(cd ' . filedir . '; git rev-parse --show-toplevel 2>/dev/null)"'
+      let gitdir = system(cmd)
+      if strlen(gitdir) == 0
+        return '~/'
+      else
+        return gitdir[:-2] " chomp
+      endif
+    else
+      return '~/'
+  else
+    return '~/'
+  endif
+endfunction
+
+function! HasGitRepo(path)
+  let result = system('cd ' . a:path . '; git rev-parse --show-toplevel')
+  if result =~# 'fatal:.*'
+    return 0
+  else
+    return 1
+  endif
+endfunction

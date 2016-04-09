@@ -1,0 +1,72 @@
+#!/bin/bash
+
+set -e
+
+mkdir -p "$HOME/music/flac"
+mkdir -p "$HOME/music/mp3"
+
+cd "$HOME/music/flac"
+
+# converts flacs to mp3hq/mp3mq/mp3lq
+find . -type f -iname "*.flac" -print0 | while IFS= read -r -d $'\0' FILE; do
+  DIR=`dirname "$FILE"`
+
+  if [ -f "$DIR/cover.jpg" ]; then
+    echo "AA $FILE"
+    metaflac --import-picture-from="$DIR/cover.jpg" "$FILE"
+  fi
+
+  MP3_HIGH=`realpath -m "$HOME/music/mp3hq/${FILE%.flac}.mp3"`
+  MP3_MEDIUM=`realpath -m "$HOME/music/mp3mq/${FILE%.flac}.mp3"`
+  MP3_LOW=`realpath -m "$HOME/music/mp3lq/${FILE%.flac}.mp3"`
+
+  if [ ! -f "$MP3_HIGH" ]; then
+    echo "TR $MP3_HIGH"
+    mkdir -p "$MP3_HIGH" && rm -r "$MP3_HIGH"
+    ffmpeg -v 0 -i "$FILE" -ab 320k -map_metadata 0 -id3v2_version 3 -f mp3 "$MP3_HIGH" < /dev/null
+  fi
+
+  if [ ! -f "$MP3_MEDIUM" ]; then
+    echo "TR $MP3_MEDIUM"
+    mkdir -p "$MP3_MEDIUM" && rm -r "$MP3_MEDIUM"
+    ffmpeg -v 0 -i "$FILE" -ab 192k -map_metadata 0 -id3v2_version 3 -f mp3 "$MP3_MEDIUM" < /dev/null
+  fi
+
+  if [ ! -f "$MP3_LOW" ]; then
+    echo "TR $MP3_LOW"
+    mkdir -p "$MP3_LOW" && rm -r "$MP3_LOW"
+    ffmpeg -v 0 -i "$FILE" -ab 128k -map_metadata 0 -id3v2_version 3 -f mp3 "$MP3_LOW" < /dev/null
+  fi
+done
+
+#find . -name cover.jpg -delete
+
+# copies mp3 to mp3hq/mp3mq/mp3lq to avoid transcoding information loss
+cd "$HOME/music/mp3"
+
+find . -type f -iname "*.mp3" -print0 | while IFS= read -r -d $'\0' FILE; do
+  DIR=`dirname "$FILE"`
+
+  MP3_HIGH=`realpath -m "$HOME/music/mp3hq/${FILE}"`
+  MP3_MEDIUM=`realpath -m "$HOME/music/mp3mq/${FILE}"`
+  MP3_LOW=`realpath -m "$HOME/music/mp3lq/${FILE}"`
+
+  if [ ! -f "$MP3_HIGH" ]; then
+    echo "CP $MP3_HIGH"
+    mkdir -p "$MP3_HIGH" && rm -r "$MP3_HIGH"
+    cp "$FILE" "$MP3_HIGH"
+  fi
+
+  if [ ! -f "$MP3_MEDIUM" ]; then
+    echo "CP $MP3_MEDIUM"
+    mkdir -p "$MP3_MEDIUM" && rm -r "$MP3_MEDIUM"
+    cp "$FILE" "$MP3_MEDIUM"
+  fi
+
+  if [ ! -f "$MP3_LOW" ]; then
+    echo "CP $MP3_LOW"
+    mkdir -p "$MP3_LOW" && rm -r "$MP3_LOW"
+    cp "$FILE" "$MP3_LOW"
+  fi
+done
+

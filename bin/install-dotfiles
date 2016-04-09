@@ -70,7 +70,7 @@ PACKAGES=(
   python3-pip
   rdesktop
   rofi
-  rxvt-unicode
+  rxvt-unicode-256color
   #rsyslog
   scala
   screen

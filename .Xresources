@@ -10,5 +10,4 @@ URxvt*scrollBar: false
 URxvt*background: Black
 URxvt*foreground: White
 URxvt.letterSpace: 0
-
-
+URxvt.cursorBlink: 1
