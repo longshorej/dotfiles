@@ -23,6 +23,8 @@ Plugin 'osyo-manga/vim-over'
 Plugin 'luochen1990/rainbow'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'terryma/vim-expand-region'
 
 call vundle#end()
 filetype plugin indent on
@@ -59,11 +61,16 @@ set shiftwidth=2
 set mouse=a
 set nowrap
 set hlsearch
-set scrolloff=99999
-set virtualedit=all
+set scrolloff=10
 set autoread
 
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+highlight CursorLine ctermfg=white ctermbg=DarkGrey
+highlight Search ctermfg=white ctermbg=DarkGrey
+highlight IncSearch ctermfg=white ctermbg=DarkGrey
+highlight Pmenu ctermfg=white ctermbg=DarkGrey
+highlight Visual ctermfg=white ctermbg=DarkRed
+highlight StatusLine ctermfg=white ctermbg=DarkRed
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -72,7 +79,8 @@ map <C-n> :NERDTreeToggle<CR>
 
 
 " Use ag over grep
-set grepprg=ag\ --nogroup\ --nocolor
+set grepprg="ag\ --nogroup\ --nocolor \ --hidden"
+let g:ag_prg="ag --hidden --vimgrep"
 
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'

@@ -3,7 +3,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export BROWSER=firefox
-export EDITOR=emacs
+export EDITOR=vim
 
 if [ -e "$HOME/.bash_profilelocal" ]; then
     source "$HOME/.bash_profilelocal"

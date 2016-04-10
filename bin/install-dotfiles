@@ -24,6 +24,7 @@ PACKAGES=(
   chromium
   cmus
   compton
+  cups
   curl
   dconf-cli
   debootstrap
@@ -34,7 +35,7 @@ PACKAGES=(
   #gedit
   glyrc
   #gnome-terminal
-  #gnome-themes-standard
+  gnome-themes-standard
   haskell-platform
   i3
   icedove
@@ -48,6 +49,7 @@ PACKAGES=(
   libx11-dev
   libxft-dev
   libxext-dev
+  lm-sensors
   mariadb-client
   mariadb-server
   mplayer
@@ -60,6 +62,7 @@ PACKAGES=(
   openjdk-8-jdk
   openjdk-8-source
   openssh-client
+  paprefs
   parcellite
   pavucontrol
   php
@@ -78,6 +81,7 @@ PACKAGES=(
   silversearcher-ag
   subversion
   sxiv
+  thermald
   tmux
   unifont
   #unrar
