@@ -32,7 +32,7 @@ bindsym $mod+Return exec bash -c 'exec urxvt -cd "$(xcwd)"'
 
 # screenshot
 
-bindsym Print exec scrot ~/pictures/screenshots/%Y-%m-%d-%T.png
+bindsym --release Print exec scrot -s ~/pictures/screenshots/%Y-%m-%d-%T.png
 
 # kill focused window
 bindsym $mod+q kill
@@ -118,7 +118,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+Escape exec "i3-msg exit"
-bindsym $mod+Escape exec --no-startup-id "i3lock -c 333333"
+bindsym $mod+Escape exec --no-startup-id "i3lock -u -c 333333"
 
 bindsym $mod+semicolon move scratchpad
 bindsym $mod+apostrophe scratchpad show
@@ -217,5 +217,5 @@ exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id xset dpms 600
-exec --no-startup-id xautolock -time 5 -locker "i3lock -c 333333"
+exec --no-startup-id xautolock -time 5 -locker "i3lock -u -c 333333"
 exec --no-startup-id compton -CGb --backend glx --vsync opengl

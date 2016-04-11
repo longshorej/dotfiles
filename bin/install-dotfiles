@@ -108,10 +108,10 @@ fi
 cd ..
 
 git pull
-git submodule foreach --recursive git reset --hard
-git submodule foreach git fetch origin master
-git submodule foreach git reset --hard FETCH_HEAD
-git submodule foreach git clean -df
+#git submodule foreach --recursive git reset --hard
+#git submodule foreach git fetch origin master
+#git submodule foreach git reset --hard FETCH_HEAD
+#git submodule foreach git clean -df
 
 rsync -rcip --links --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
