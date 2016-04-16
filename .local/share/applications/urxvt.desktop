@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=urxvt
+Comment=
+Path=~
+Exec=urxvt -cd
+Icon=
+Terminal=false
+Categories=

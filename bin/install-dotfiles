@@ -28,7 +28,9 @@ PACKAGES=(
   curl
   dconf-cli
   debootstrap
+  desktop-file-utils
   ffmpeg
+  firmware-linux-nonfree
   flac
   emacs
   feh
@@ -46,10 +48,12 @@ PACKAGES=(
   irssi
   libnotify-bin
   libreoffice
+  libreoffice-gtk3
   libx11-dev
   libxft-dev
   libxext-dev
   lm-sensors
+  lvm2
   mariadb-client
   mariadb-server
   mplayer
@@ -88,6 +92,7 @@ PACKAGES=(
   unzip
   vpnc
   vim
+  virtualbox-qt
   xautolock
   xorg
   xterm

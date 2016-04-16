@@ -4,7 +4,7 @@ mkdir -p "$HOME/work/meddle"
 
 mountpoint -q "$HOME/work/meddle" || exit 1
 
-DIRS=(flac mp3hq mp3mq)
+DIRS=(flac mp3 mp3hq mp3mq mp3lq)
 
 for e in "${DIRS[@]}"; do
   if [ -d "$HOME/music/$e" ]; then
