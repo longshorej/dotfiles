@@ -29,12 +29,14 @@ PACKAGES=(
   dconf-cli
   debootstrap
   desktop-file-utils
+  dnsutils
   ffmpeg
   firmware-linux-nonfree
   flac
   emacs
   feh
   #gedit
+  gimp
   glyrc
   #gnome-terminal
   gnome-themes-standard
@@ -46,6 +48,7 @@ PACKAGES=(
   iotop
   iperf
   irssi
+  libinput-tools
   libnotify-bin
   libreoffice
   libreoffice-gtk3
@@ -74,6 +77,7 @@ PACKAGES=(
   pidgin-libnotify
   pigz
   pulseaudio
+  python-pip
   python3-pip
   rdesktop
   rofi
@@ -133,6 +137,9 @@ if [ $ALL_INSTALLED -eq 0 ]; then
   sudo apt-get -y dist-upgrade
   sudo apt-get install -y `join " " "${PACKAGES[@]}"`
 fi
+
+# todo implement a check like apt above to only run if new packages
+sudo pip install websocket-client sexpdata
 
 for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
   if [ -d "$MODULE" ]; then

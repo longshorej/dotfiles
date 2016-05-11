@@ -25,6 +25,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'terryma/vim-expand-region'
+Plugin 'ensime/ensime-vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'StanAngeloff/php.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -63,6 +66,8 @@ set nowrap
 set hlsearch
 set scrolloff=10
 set autoread
+set clipboard+=unnamed
+set go+=a
 
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 highlight CursorLine ctermfg=white ctermbg=DarkGrey
@@ -111,6 +116,9 @@ nmap <silent> <leader>p :set invpaste<CR>:set paste?<CR>
 nmap <silent> <leader>cd :lcd %:h<CR>
 nmap <silent> <leader>cr :lcd <c-r>=FindCodeDirOrHome()<cr><cr>
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
+
+au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+au FileType scala nnoremap <localleader>ds :EnDeclarationSplit<CR>
 
 
 " Make shift-insert work like in Xterm
