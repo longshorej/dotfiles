@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -d ~/work/dotfiles ]; then
+  >&2 echo "clone into ~/work/dotfiles"
+  exit 1
+fi
+
+mkdir -p ~/bin ~/desktop ~/documents ~/downloads ~/music ~/pictures ~/programs ~/videos ~/work
+
+cd ~/work/dotfiles
+
+git pull
+
+#git submodule foreach --recursive git reset --hard
+#git submodule foreach git fetch origin master
+#git submodule foreach git reset --hard FETCH_HEAD
+#git submodule foreach git clean -df
+
+#rm -rf ~/work/dotscala
+
+rsync -rcip --links \
+  --exclude=.git \
+  --exclude='*.swp' \
+  --exclude=README.md \
+  --exclude=LICENSE \
+  --exclude=bin/longshorej-install-dotfiles \
+  --exclude=target \
+  --exclude=`git -C . ls-files --exclude-standard -oi --directory` \
+  --exclude=bin/longshorej-install-deps . ~
+
+ln -sf ~/work/dotfiles/bin/longshorej-install-dotfiles ~/bin/longshorej-install-dotfiles
+ln -sf ~/work/dotfiles/bin/longshorej-install-deps ~/bin/longshorej-install-deps
+
+for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
+  if [ -d "$MODULE" ]; then
+     echo "* installing module $MODULE"
+
+     (cd "$MODULE" && git pull)
+     (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
+     (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
+
+     if [ -f "$MODULE/build" ]; then
+       . "$MODULE/build"
+     fi
+  fi
+done
+
+#systemctl --user enable emacs
+#systemctl --user start emacs
+
+~/work/dotscala/build 

@@ -1,0 +1,131 @@
+#!/bin/bash
+
+set -e
+
+function join {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
+
+which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
+
+PACKAGES=(
+  abcde
+  ack-grep
+  apache2-utils
+  build-essential
+  cifs-utils
+  chromium
+  cmus
+  compton
+  cups
+  curl
+  dconf-cli
+  debootstrap
+  desktop-file-utils
+  dnsutils
+  expect
+  fabric
+  ffmpeg
+  filezilla
+  firmware-linux-nonfree
+  flac
+  emacs
+  feh
+  #gedit
+  gimp
+  glyrc
+  #gnome-terminal
+  gnome-themes-standard
+  haskell-platform
+  i3
+  icedove
+  icedtea-8-plugin
+  iceweasel
+  iotop
+  iperf
+  irssi
+  libinput-tools
+  libnotify-bin
+  libreoffice
+  libreoffice-gtk3
+  libx11-dev
+  libxft-dev
+  libxext-dev
+  lm-sensors
+  lvm2
+  mariadb-client
+  mariadb-server
+  mplayer
+  mysql-workbench
+  network-manager-gnome
+  network-manager-vpnc
+  network-manager-vpnc-gnome
+  nmap
+  nodejs
+  ntp
+  openjdk-8-jdk
+  openjdk-8-source
+  openssh-client
+  paprefs
+  parcellite
+  pavucontrol
+  php
+  pidgin
+  pidgin-libnotify
+  pigz
+  pulseaudio
+  python-pip
+  python3-pip
+  rdesktop
+  rofi
+  rxvt-unicode-256color
+  #rsyslog
+  scala
+  screen
+  scrot
+  silversearcher-ag
+  subversion
+  sxiv
+  thermald
+  tmux
+  unifont
+  #unrar
+  unzip
+  vpnc
+  vim
+  virtualbox-qt
+  xautolock
+  xorg
+  xterm
+  youtube-dl
+  zathura
+)
+
+APT_ALL_INSTALLED=1
+
+for PACKAGE in "${PACKAGES[@]}"; do
+  dpkg -s "$PACKAGE" >/dev/null 2>&1 || APT_ALL_INSTALLED=0
+done
+
+if [ $APT_ALL_INSTALLED -eq 0 ]; then
+  sudo apt-get -y update
+  sudo apt-get install -y `join " " "${PACKAGES[@]}"`
+fi
+
+PIP_ALL_INSTALLED=1
+
+PIP_PACKAGES=(websocket-client sexpdata)
+
+for PACKAGE in "${PIP_PACKAGES[@]}"; do
+  pip show "$PACKAGE" >/dev/null 2>&1 || PIP_ALL_INSTALLED=0
+done
+
+if [ $PIP_ALL_INSTALLED -eq 0 ]; then
+  sudo pip install `join " " "${PIP_PACKAGES[@]}"`
+fi
+
+sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
+sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+
