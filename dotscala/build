@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+cd $(dirname $(readlink -f $0))
+
+sbt clean compile test universal:packageBin
+
+cd target/universal
+
+unzip dotscala-1.0.zip

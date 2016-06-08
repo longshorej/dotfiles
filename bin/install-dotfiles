@@ -19,6 +19,7 @@ cd ${0%/*}
 PACKAGES=(
   abcde
   ack-grep
+  apache2-utils
   build-essential
   cifs-utils
   chromium
@@ -30,7 +31,10 @@ PACKAGES=(
   debootstrap
   desktop-file-utils
   dnsutils
+  expect
+  fabric
   ffmpeg
+  filezilla
   firmware-linux-nonfree
   flac
   emacs
@@ -60,6 +64,7 @@ PACKAGES=(
   mariadb-client
   mariadb-server
   mplayer
+  mysql-workbench
   network-manager-gnome
   network-manager-vpnc
   network-manager-vpnc-gnome
@@ -122,7 +127,7 @@ git pull
 #git submodule foreach git reset --hard FETCH_HEAD
 #git submodule foreach git clean -df
 
-rsync -rcip --links --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
+rsync -rcip --links --exclude=dotscala --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
 # TODO restart the script if install-dotfiles has changed
 
@@ -158,3 +163,5 @@ sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 #systemctl --user start emacs
 
 #(cp .st/config.h work/st/config.h && cd work/st && patch < ../../.st/st-git-20151217-scrollback.diff && make clean && make && cp -f ./st ~/bin/)
+
+dotscala/build 

@@ -129,7 +129,7 @@ fi
 #gconftool-2 --type=string --set /desktop/gnome/interface/gtk_key_theme Emacs
 
 # terminal colors
-source $HOME/.base16-default.dark.sh
+#source $HOME/.base16-default.dark.sh
 
 readonly BG_RED="\[$(tput setab 1)\]"
 readonly BG_GREEN="\[$(tput setab 2)\]"

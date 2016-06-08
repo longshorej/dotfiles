@@ -1,0 +1,9 @@
+#!/bin/bash
+
+FILE="$HOME/work/dotfiles/dotscala/target/universal/dotscala-1.0/bin/dotscala"
+
+if [ ! -f "$FILE" ]; then
+  exit 1
+fi
+
+exec $FILE "$@"
