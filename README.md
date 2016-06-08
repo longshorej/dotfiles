@@ -1,4 +1,4 @@
-# Longshorej's dotfiles
+# longshorej's dotfiles
 
 This repository contains programs and configurations for use on a computer running Debian testing.
 
