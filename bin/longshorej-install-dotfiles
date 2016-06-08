@@ -11,7 +11,7 @@ mkdir -p ~/bin ~/desktop ~/documents ~/downloads ~/music ~/pictures ~/programs ~
 
 cd ~/work/dotfiles
 
-git pull
+#git pull
 
 #git submodule foreach --recursive git reset --hard
 #git submodule foreach git fetch origin master
@@ -41,8 +41,8 @@ for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
      (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
      (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
 
-     if [ -f "$MODULE/build" ]; then
-       . "$MODULE/build"
+     if [ -f "$MODULE/install-dotfiles" ]; then
+       . "$MODULE/install-dotfiles"
      fi
   fi
 done

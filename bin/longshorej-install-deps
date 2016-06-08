@@ -129,3 +129,16 @@ fi
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
+for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
+  if [ -d "$MODULE" ]; then
+     echo "* installing module $MODULE"
+
+     (cd "$MODULE" && git pull)
+     (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
+     (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
+
+     if [ -f "$MODULE/install-deps" ]; then
+       . "$MODULE/install-deps"
+     fi
+  fi
+done
