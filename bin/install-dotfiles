@@ -127,7 +127,7 @@ git pull
 #git submodule foreach git reset --hard FETCH_HEAD
 #git submodule foreach git clean -df
 
-rsync -rcip --links --exclude=dotscala --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
+rsync -rcip --links --exclude=.git --exclude='*.swp' --exclude=README.md --exclude=LICENSE --exclude bin/install-dotfiles . ~
 
 # TODO restart the script if install-dotfiles has changed
 
@@ -153,6 +153,10 @@ for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
      (cd "$MODULE" && git pull)
      (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
      (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
+
+     if [ -f "$MODULE/build" ]; then
+       . "$MODULE/build"
+     fi
   fi
 done
 
@@ -164,4 +168,4 @@ sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
 #(cp .st/config.h work/st/config.h && cd work/st && patch < ../../.st/st-git-20151217-scrollback.diff && make clean && make && cp -f ./st ~/bin/)
 
-dotscala/build 
+~/work/dotscala/build 
