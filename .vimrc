@@ -28,9 +28,11 @@ Plugin 'terryma/vim-expand-region'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/unite.vim'
 "Plugin 'StanAngeloff/php.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'ensime/ensime-vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 filetype plugin indent on
@@ -127,6 +129,9 @@ au FileType scala nnoremap <localleader>ds :EnDeclarationSplit<CR>
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
+
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
 
 " git / fugitive
 nnoremap <space>ga :Git add %:p<CR><CR>

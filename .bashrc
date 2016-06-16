@@ -131,10 +131,20 @@ fi
 # terminal colors
 #source $HOME/.base16-default.dark.sh
 
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%Y-%m-%d %T] "
+# Change the file location because certain bash sessions truncate .bash_history file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+export HISTFILE=~/.bash_eternal_history
+
 readonly BG_RED="\[$(tput setab 1)\]"
 readonly BG_GREEN="\[$(tput setab 2)\]"
 readonly BG_PINK="\[$(tput setab 13)\]"
-
+readonly FG_RED="\[$(tput setaf 1)\]"
+readonly FG_BLUE="\[$(tput setaf 4)\]"
+readonly FG_GREEN="\[$(tput setaf 2)\]"
+readonly FG_PINK="\[$(tput setaf 13)\]"
 readonly DIM="\[$(tput dim)\]"
 readonly REVERSE="\[$(tput rev)\]"
 readonly RESET="\[$(tput sgr0)\]"
@@ -155,15 +165,36 @@ updatetitle() {
   fi
 }
 
+GIT_BRANCH=""
+
+find_git_branch() {
+  # Based on: http://stackoverflow.com/a/13003854/170413
+  local branch
+
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch='detached*'
+    fi
+
+    GIT_BRANCH="#$branch"
+  else
+    GIT_BRANCH=""
+  fi
+}
+
 ps1() {
+  find_git_branch
   local CMD=$?
+  history -a
+  history -r
+
   PS1=""
 
   if [[ $PS1_STARTED -ne 0 ]]; then
     if [ $CMD -eq 0 ]; then
-      PS1="$BG_GREEN-> $CMD$RESET\n\n"
+      PS1="$FG_GREEN-> $CMD$RESET\n\n"
     else
-      PS1="$BG_RED-> $CMD$RESET\n\n"
+      PS1="$FG_RED-> $CMD$RESET\n\n"
     fi
   else
     PS1_STARTED=1
@@ -171,7 +202,7 @@ ps1() {
     PS1=""
   fi
 
-  PS1="$PS1$BG_PINK\w \$$RESET "
+  PS1="$PS1$FG_PINK\w$FG_BLUE$GIT_BRANCH$FG_PINK \$$RESET "
   PS1_COMMAND=""
   #settitle "$BASH_COMMAND - $PWD - bash"
 }

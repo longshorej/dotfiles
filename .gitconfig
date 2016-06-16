@@ -1,3 +1,6 @@
 [user]
   email = longshorej@gmail.com
   name = Jason Longshore
+
+[push]
+  default = current

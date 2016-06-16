@@ -18,6 +18,7 @@ PACKAGES=(
   cifs-utils
   chromium
   cmus
+  colortest
   compton
   cups
   curl
