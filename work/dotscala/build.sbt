@@ -30,6 +30,9 @@ scalacOptions ++= Vector(
   "-Ywarn-unused"
 )
 
-libraryDependencies += "com.google.code.gson" % "gson" % "2.6.2"
+libraryDependencies ++= Vector(
+  "com.google.code.gson" % "gson" % "2.6.2",
+  "com.github.scopt" %% "scopt" % "3.5.0"
+)
 
 mainClass in Compile := Some("info.longshore.dotscala.Main")

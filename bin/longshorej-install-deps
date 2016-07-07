@@ -91,11 +91,13 @@ PACKAGES=(
   sxiv
   thermald
   tmux
+  tree
   unifont
   #unrar
   unzip
   vpnc
   vim
+  vim-gtk3
   virtualbox-qt
   xautolock
   xorg

@@ -171,7 +171,7 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
   (global-linum-mode)
-
+  (set-face-italic-p 'italic nil)
   (setq truncate-lines t
         tab-width 2
         sh-basic-offset 2
