@@ -77,6 +77,7 @@ PACKAGES=(
   pidgin-libnotify
   pigz
   pulseaudio
+  pv
   python-pip
   python3-pip
   rdesktop
@@ -85,6 +86,7 @@ PACKAGES=(
   #rsyslog
   scala
   screen
+  screenfetch
   scrot
   silversearcher-ag
   subversion
@@ -97,6 +99,7 @@ PACKAGES=(
   vpnc
   vim
   virtualbox-qt
+  visualvm
   xautolock
   xorg
   xterm

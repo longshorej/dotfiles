@@ -1,9 +1,0 @@
-#!/bin/bash
-
-mkdir -p "$HOME/work/meddle"
-
-mountpoint -q "$HOME/work/meddle" || sudo mount -t cifs -o uid=longshorej,gid=longshorej,user=Jason //192.168.88.61/C "$HOME/work/meddle"
-
-if [ ! -e "$HOME/music/meddle" ]; then
-  ln -s "$HOME/work/meddle/Users/Longshore/Music/" "$HOME/music/meddle"
-fi

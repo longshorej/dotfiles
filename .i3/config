@@ -169,14 +169,14 @@ for_window [class="Firefox" window_role="Organizer"] floating enable
 for_window [class="Firefox" window_role="page-info"] floating enable
 for_window [class="Firefox" window_role="view-source"] floating enable
 for_window [class="Evolution" title="Compose Message"] floating enable
-for_window [class="Pidgin" window_role="buddy_list"] floating enable
+#for_window [class="Pidgin" window_role="buddy_list"] floating enable
 for_window [class="Pavucontrol"] floating enable
 #for_window [class="feh"] floating enable
 #for_window [class="Eog"] floating enable
 for_window [class="Thunderbird" window_role="Preferences"] floating enable
 for_window [class="Thunderbird" window_role="Msgcompose"] floating enable
 for_window [class="Gnome-terminal" window_role="floating"] floating enable
-for_window [instance="gimp"] floating enable
+#for_window [instance="gimp"] floating enable
 
 
 
