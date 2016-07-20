@@ -1,14 +1,14 @@
 #!/bin/bash
 
-mkdir -p "$HOME/work/meddle"
+mkdir -p "$HOME/work/help"
 
-mountpoint -q "$HOME/work/meddle" || exit 1
+mountpoint -q "$HOME/work/help" || exit 1
 
 DIRS=(flac mp3 mp3hq mp3mq mp3lq)
 
 for e in "${DIRS[@]}"; do
   if [ -d "$HOME/music/$e" ]; then
-    rsync --remove-source-files -a --info=progress2 "$HOME/music/$e" "$HOME/work/meddle/Users/Longshore/Music/"
+    rsync --remove-source-files -a --info=progress2 "$HOME/music/$e" "$HOME/work/help/Users/Longshore/Music/"
     find "$HOME/music/$e" -type d -empty -delete
   fi
 done

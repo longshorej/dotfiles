@@ -23,7 +23,7 @@ Plugin 'osyo-manga/vim-over'
 Plugin 'luochen1990/rainbow'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 Plugin 'terryma/vim-expand-region'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/unite.vim'
@@ -33,6 +33,7 @@ Plugin 'ensime/ensime-vim'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'ntpeters/vim-better-whitespace'
+"Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype plugin indent on

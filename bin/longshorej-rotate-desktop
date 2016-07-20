@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# this script finds (via mtime) all old ~/desktop files and moves them to ~/desktop/old
+# then moves them to ~/desktop/old empty directories are also deleted
+
+DATE=`date -I`
+mkdir -p ~/old/$DATE
+
+cd ~/desktop
+find . -mtime +14 -not -path ~/desktop/old -exec install -D {} ~/desktop/old \;
