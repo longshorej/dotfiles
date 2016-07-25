@@ -20,6 +20,8 @@ cd ~/work/dotfiles
 
 #rm -rf ~/work/dotscala
 
+git submodule foreach git pull origin master
+
 rsync -rcip --links \
   --exclude=.git \
   --exclude='*.swp' \
@@ -50,4 +52,4 @@ done
 #systemctl --user enable emacs
 #systemctl --user start emacs
 
-~/work/dotscala/build 
+~/work/dotscala/build
