@@ -52,7 +52,9 @@ let g:ctrlp_working_path_mode=0
 let mapleader=' '
 
 set background=dark
-colorscheme base16-default
+" colorscheme base16-default-dark
+let g:airline_theme='jellybeans'
+set t_md=
 filetype on
 syntax on
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/.ensime*,*/webjars,*/target,*/wms1/data,*/wms2/*/managed
@@ -150,6 +152,15 @@ nnoremap <space>gb :Git branch<Space>
 nnoremap <space>go :Git checkout<Space>
 "nnoremap <space>gps :Dispatch! git push<CR>
 "nnoremap <space>gpl :Dispatch! git pull<CR>
+
+" ensime
+nnoremap <space>nt :EnType<CR>
+nnoremap <space>nd :EnDeclaration<CR>
+nnoremap <space>ns :EnDeclarationSplit<CR>
+autocmd BufWritePost *.scala :EnTypeCheck
+
+" syntastic
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
 function! FindCodeDirOrHome()
   let filedir = expand('%:p:h')

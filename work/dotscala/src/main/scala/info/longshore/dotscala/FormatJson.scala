@@ -31,35 +31,35 @@ object FormatJson {
       val token = reader.peek()
 
       token match {
-        case BEGIN_ARRAY => 
+        case BEGIN_ARRAY =>
           reader.beginArray()
           writer.beginArray()
 
-        case END_ARRAY => 
+        case END_ARRAY =>
           reader.endArray()
           writer.endArray()
 
-        case BEGIN_OBJECT => 
+        case BEGIN_OBJECT =>
           reader.beginObject()
           writer.beginObject()
 
-        case END_OBJECT => 
+        case END_OBJECT =>
           reader.endObject()
           writer.endObject()
 
-        case NAME => 
+        case NAME =>
           writer.name(reader.nextName())
 
-        case STRING => 
+        case STRING =>
           writer.value(reader.nextString())
 
-        case NUMBER => 
+        case NUMBER =>
           writer.value(new BigDecimal(reader.nextString()))
 
-        case BOOLEAN => 
+        case BOOLEAN =>
           writer.value(reader.nextBoolean())
 
-        case NULL => 
+        case NULL =>
           reader.nextNull()
           writer.nullValue()
 
