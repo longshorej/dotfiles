@@ -1,6 +1,6 @@
 [ui]
 theme=original_bright
-beep=false
+beep=true
 flash=false
 splash=true
 wrap=true
@@ -42,7 +42,7 @@ pgp.char=%
 [notifications]
 message.current=false
 message=false
-room=off
+room=false
 typing=false
 invite=false
 sub=false
