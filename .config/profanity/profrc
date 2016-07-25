@@ -1,0 +1,61 @@
+[ui]
+theme=original_bright
+beep=false
+flash=false
+splash=true
+wrap=true
+wins.autotidy=false
+time=%m/%d/%Y %I:%m%P
+resource.title=true
+resource.message=true
+statuses.console=all
+statuses.chat=all
+statuses.muc=all
+occupants=true
+occupants.size=15
+roster=true
+roster.offline=true
+roster.resource=true
+roster.empty=true
+roster.by=presence
+roster.size=25
+privileges=true
+presence=true
+intype=true
+enc.warn=true
+occupants.jid=true
+
+time.statusbar=
+
+[connection]
+autoping=0
+account=jasonlongshore@jabber.hpn.com
+
+defaccount=jasonlongshore@jabber.hpn.com
+
+[otr]
+otr.char=@
+
+[pgp]
+pgp.char=%
+
+[notifications]
+message.current=false
+message=false
+room=off
+typing=false
+invite=false
+sub=false
+room.current=false
+typing.current=false
+
+[alias]
+1=/win 1
+2=/win 2
+3=/win 3
+4=/win 4
+5=/win 5
+6=/win 6
+7=/win 7
+8=/win 8
+9=/win 9
