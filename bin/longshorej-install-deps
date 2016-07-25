@@ -10,6 +10,8 @@ function join {
 
 which sudo > /dev/null 2>&1 || (echo "* install sudo" && exit 1)
 
+GOPATH="$HOME/work/go"
+
 PACKAGES=(
   abcde
   ack-grep
@@ -37,6 +39,7 @@ PACKAGES=(
   #gedit
   gimp
   glyrc
+  golang-go
   #gnome-terminal
   gnome-themes-standard
   haskell-platform
@@ -129,6 +132,8 @@ done
 if [ $PIP_ALL_INSTALLED -eq 0 ]; then
   sudo pip install `join " " "${PIP_PACKAGES[@]}"`
 fi
+
+go get github.com/rakyll/boom
 
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
