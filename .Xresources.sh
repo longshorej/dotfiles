@@ -1,3 +1,8 @@
+#!/bin/bash
+
+cat <<EOT
+Xft.dpi: $DPI
+
 Xcursor.theme: Adwaita
 
 URxvt*scrollTtyOutput: false
@@ -14,6 +19,7 @@ URxvt.cursorBlink: 1
 URxvt.urgentOnBell: true
 URxvt*visualBell: false
 
+rofi.dpi: $DPI
 rofi.color-enabled: true
 rofi.separator-style: solid
 rofi.color-window: #151515,#f5f5f5
@@ -47,4 +53,4 @@ URxvt.color14 : #55FFFF
 ! white
 URxvt.color7  : #AAAAAA
 URxvt.color15 : #FFFFFF
-
+EOT

@@ -45,7 +45,6 @@ PACKAGES=(
   gimp
   glyrc
   golang-go
-  #gnome-terminal
   gnome-themes-standard
   haskell-platform
   i3
