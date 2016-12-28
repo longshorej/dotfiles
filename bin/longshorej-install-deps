@@ -15,23 +15,28 @@ GOPATH="$HOME/work/go"
 PACKAGES=(
   abcde
   ack-grep
+  ansible
   apache2-utils
   build-essential
   cifs-utils
   chromium
+  clang
   cmus
   colortest
   compton
   cups
   curl
+  davfs2
   dconf-cli
   debootstrap
   desktop-file-utils
   dnsutils
+  dunst
   expect
   fabric
   ffmpeg
   filezilla
+  firefox-esr
   firmware-linux-nonfree
   flac
   emacs
@@ -46,11 +51,11 @@ PACKAGES=(
   i3
   icedove
   icedtea-8-plugin
-  iceweasel
   iotop
   iperf
   irssi
   libinput-tools
+  libgc-dev
   libnotify-bin
   libreoffice
   libreoffice-gtk3
@@ -59,8 +64,9 @@ PACKAGES=(
   libxext-dev
   lm-sensors
   lvm2
-  mariadb-client
-  mariadb-server
+  makeself
+  #mariadb-client
+  #mariadb-server
   mplayer
   mysql-workbench
   network-manager-gnome
@@ -72,9 +78,11 @@ PACKAGES=(
   openjdk-8-jdk
   openjdk-8-source
   openssh-client
+  openssh-server
   paprefs
   parcellite
   pavucontrol
+  percona-toolkit
   php
   pidgin
   pidgin-libnotify
@@ -92,6 +100,7 @@ PACKAGES=(
   screenfetch
   scrot
   silversearcher-ag
+  sshfs
   subversion
   sxiv
   thermald
@@ -104,6 +113,7 @@ PACKAGES=(
   vim
   vim-gtk3
   virtualbox-qt
+  virt-manager
   visualvm
   xautolock
   xorg
@@ -118,24 +128,31 @@ for PACKAGE in "${PACKAGES[@]}"; do
   dpkg -s "$PACKAGE" >/dev/null 2>&1 || APT_ALL_INSTALLED=0
 done
 
+#if [ ! -f "/etc/apt/sources.list.d/percona.list" ]; then
+#  sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
+#  echo "deb http://repo.percona.com/apt jessie main" | sudo tee --append /etc/apt/sources.list.d/percona.list
+#  echo "deb-src http://repo.percona.com/apt jessie main" | sudo tee --append /etc/apt/sources.list.d/percona.list
+#  APT_ALL_INSTALLED=0
+#fi
+
 if [ $APT_ALL_INSTALLED -eq 0 ]; then
   sudo apt-get -y update
   sudo apt-get install -y `join " " "${PACKAGES[@]}"`
 fi
 
-PIP_ALL_INSTALLED=1
+#PIP_ALL_INSTALLED=1
 
-PIP_PACKAGES=(websocket-client sexpdata)
+#PIP_PACKAGES=(websocket-client sexpdata)
 
-for PACKAGE in "${PIP_PACKAGES[@]}"; do
-  pip show "$PACKAGE" >/dev/null 2>&1 || PIP_ALL_INSTALLED=0
-done
+#for PACKAGE in "${PIP_PACKAGES[@]}"; do
+#  pip show "$PACKAGE" >/dev/null 2>&1 || PIP_ALL_INSTALLED=0
+#done
 
-if [ $PIP_ALL_INSTALLED -eq 0 ]; then
-  sudo pip install `join " " "${PIP_PACKAGES[@]}"`
-fi
+#if [ $PIP_ALL_INSTALLED -eq 0 ]; then
+#  sudo pip install `join " " "${PIP_PACKAGES[@]}"`
+#fi
 
-go get github.com/rakyll/boom
+#go get github.com/rakyll/boom
 
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10

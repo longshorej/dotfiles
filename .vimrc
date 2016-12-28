@@ -28,8 +28,8 @@ Plugin 'terryma/vim-expand-region'
 "Plugin 'Shougo/vimproc.vim'
 "Plugin 'Shougo/unite.vim'
 "Plugin 'StanAngeloff/php.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'ensime/ensime-vim'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'ensime/ensime-vim'
 "Plugin 'jiangmiao/auto-pairs'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -125,8 +125,8 @@ nmap <silent> <leader>cd :lcd %:h<CR>
 nmap <silent> <leader>cr :lcd <c-r>=FindCodeDirOrHome()<cr><cr>
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
-au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
-au FileType scala nnoremap <localleader>ds :EnDeclarationSplit<CR>
+"au FileType scala nnoremap <localleader>df :EnDeclaration<CR>
+"au FileType scala nnoremap <localleader>ds :EnDeclarationSplit<CR>
 
 
 " Make shift-insert work like in Xterm
@@ -154,10 +154,10 @@ nnoremap <space>go :Git checkout<Space>
 "nnoremap <space>gpl :Dispatch! git pull<CR>
 
 " ensime
-nnoremap <space>nt :EnType<CR>
-nnoremap <space>nd :EnDeclaration<CR>
-nnoremap <space>ns :EnDeclarationSplit<CR>
-autocmd BufWritePost *.scala :EnTypeCheck
+"nnoremap <space>nt :EnType<CR>
+"nnoremap <space>nd :EnDeclaration<CR>
+"nnoremap <space>ns :EnDeclarationSplit<CR>
+"autocmd BufWritePost *.scala :EnTypeCheck
 
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
