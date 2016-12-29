@@ -190,8 +190,10 @@ find_git_branch() {
 }
 
 ps1() {
-  find_git_branch
   local CMD=$?
+
+  find_git_branch
+
   history -a
   history -r
 
