@@ -1,4 +1,4 @@
-sbtVersion := "0.13.11"
+sbtVersion := "0.13.13"
 
 scalacOptions ++= Vector("-feature", "-deprecation", "-unchecked")
 

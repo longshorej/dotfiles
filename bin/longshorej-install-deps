@@ -115,6 +115,7 @@ PACKAGES=(
   virt-manager
   visualvm
   xautolock
+  xbacklight
   xorg
   xterm
   youtube-dl
