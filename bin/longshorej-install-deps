@@ -36,7 +36,7 @@ PACKAGES=(
   fabric
   ffmpeg
   filezilla
-  firefox-esr
+  firefox
   firmware-linux-nonfree
   flac
   emacs
@@ -56,6 +56,7 @@ PACKAGES=(
   libinput-tools
   libgc-dev
   libnotify-bin
+  libpam-ssh
   libreoffice
   libreoffice-gtk3
   libx11-dev
@@ -157,7 +158,7 @@ fi
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
 sudo update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
-for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
+for MODULE in ${JSL_DOTFILES_MODULES[@]}; do
   if [ -d "$MODULE" ]; then
      echo "* installing module $MODULE"
 

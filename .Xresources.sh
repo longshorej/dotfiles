@@ -1,10 +1,10 @@
 #!/bin/bash
 
 cat <<EOT
-Xft.dpi: $DPI
+Xft.dpi: $JSL_WM_DPI
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  none
+Xft.hintstyle: $JSL_WM_HINTSTYLE
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
@@ -25,7 +25,7 @@ URxvt.cursorBlink: 1
 URxvt.urgentOnBell: true
 URxvt*visualBell: false
 
-rofi.dpi: $DPI
+rofi.dpi: $JSL_WM_DPI
 rofi.color-enabled: true
 rofi.separator-style: solid
 rofi.color-window: #151515,#f5f5f5

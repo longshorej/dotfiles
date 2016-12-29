@@ -18,8 +18,6 @@ cd ~/work/dotfiles
 #git submodule foreach git reset --hard FETCH_HEAD
 #git submodule foreach git clean -df
 
-#rm -rf ~/work/dotscala
-
 git submodule foreach git pull origin master
 
 doRsync() {
@@ -27,25 +25,27 @@ doRsync() {
 
   rsync -rcip --links \
     --exclude=.git \
+    --exclude=programs/dotscala/target \
+    --exclude=programs/dotscala/project/target \
+    --exclude=programs/dotscala/project/project/target \
     --exclude='*.swp' \
     --exclude=README.md \
     --exclude=LICENSE \
     --exclude=bin/longshorej-install-dotfiles \
-    --exclude=target \
     --exclude=`git -C . ls-files --exclude-standard -oi --directory` \
     --exclude=bin/longshorej-install-deps "$1" ~
 }
 
 doRsync .
 
-if [ -d "./work/dotcustom/$HOSTNAME" ]; then
-  doRsync "./work/dotcustom/$HOSTNAME/"
+if [ -d "./programs/dotcustom/$HOSTNAME" ]; then
+  doRsync "./programs/dotcustom/$HOSTNAME/"
 fi
 
 ln -sf ~/work/dotfiles/bin/longshorej-install-dotfiles ~/bin/longshorej-install-dotfiles
 ln -sf ~/work/dotfiles/bin/longshorej-install-deps ~/bin/longshorej-install-deps
 
-for MODULE in ${LONGSHOREJ_DOTFILES_MODULES[@]}; do
+for MODULE in ${JSL_DOTFILES_MODULES[@]}; do
   if [ -d "$MODULE" ]; then
      echo "* installing module $MODULE"
 
@@ -62,4 +62,4 @@ done
 #systemctl --user enable emacs
 #systemctl --user start emacs
 
-~/work/dotscala/build
+~/programs/dotscala/build

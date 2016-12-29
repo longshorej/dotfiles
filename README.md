@@ -16,7 +16,11 @@ $ ~/work/dotfiles/install-dotfiles
 
 ## Configuration (Environment Variables)
 
-###### LONGSHOREJ_DOTFILES_MODULES
+###### JSL_WM_DPI
+
+###### JSL_WM_HINTSTYLE
+
+###### JSL_DOTFILES_MODULES
 Contains space-separated paths to modules that are installed when longshorej-install-dotfiles is run.
 
 ## License

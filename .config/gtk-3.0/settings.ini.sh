@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat <<EOT
 [Settings]
 gtk-theme-name=Adwaita
 gtk-icon-theme-name=Adwaita
@@ -12,5 +15,7 @@ gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle=hintfull
+gtk-xft-hintstyle=$JSL_WM_HINTSTYLE
 gtk-xft-rgba=rgb
+gtk-key-theme-name=Emacs
+EOT
