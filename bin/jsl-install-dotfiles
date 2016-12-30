@@ -37,8 +37,8 @@ doRsync() {
 
 doRsync .
 
-if [ -d "./programs/dotcustom/$HOSTNAME" ]; then
-  doRsync "./programs/dotcustom/$HOSTNAME/"
+if [ -d "./work/dotfiles/dotcustom/$HOSTNAME" ]; then
+  doRsync "./work/dotfiles/dotcustom/$HOSTNAME/"
 fi
 
 ln -sf ~/work/dotfiles/bin/jsl-install-dotfiles ~/bin/jsl-install-dotfiles
