@@ -45,6 +45,7 @@ PACKAGES=(
   gimp
   glyrc
   golang-go
+  gnome-keyring
   gnome-themes-standard
   haskell-platform
   i3
@@ -56,7 +57,7 @@ PACKAGES=(
   libinput-tools
   libgc-dev
   libnotify-bin
-  libpam-ssh
+  libpam-gnome-keyring
   libreoffice
   libreoffice-gtk3
   libx11-dev

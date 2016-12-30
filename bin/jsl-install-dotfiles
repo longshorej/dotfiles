@@ -23,16 +23,13 @@ git submodule foreach git pull origin master
 doRsync() {
   echo "* syncing $1"
 
-  rsync -rcip --links \
+  rsync -m -rcip --links \
+    --filter=':- .gitignore' \
     --exclude=.git \
-    --exclude=programs/dotscala/target \
-    --exclude=programs/dotscala/project/target \
-    --exclude=programs/dotscala/project/project/target \
     --exclude='*.swp' \
     --exclude=README.md \
     --exclude=LICENSE \
     --exclude=bin/longshorej-install-dotfiles \
-    --exclude=`git -C . ls-files --exclude-standard -oi --directory` \
     --exclude=bin/longshorej-install-deps "$1" ~
 }
 
