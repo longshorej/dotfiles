@@ -8,7 +8,13 @@ organization := "info.longshore"
 
 enablePlugins(JavaAppPackaging)
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.1"
+
+libraryDependencies ++= Vector(
+  "com.google.code.gson"  % "gson"        % "2.6.2",
+  "com.github.scopt"     %% "scopt"       % "3.5.0",
+  "org.specs2"           %% "specs2-core" % "3.8.6" % "test"
+)
 
 scalacOptions ++= Vector(
   "-deprecation",
@@ -30,9 +36,6 @@ scalacOptions ++= Vector(
   "-Ywarn-unused"
 )
 
-libraryDependencies ++= Vector(
-  "com.google.code.gson" % "gson" % "2.6.2",
-  "com.github.scopt" %% "scopt" % "3.5.0"
-)
+scalacOptions in Test ++= Seq("-Yrangepos")
 
 mainClass in Compile := Some("info.longshore.dotscala.Main")

@@ -129,9 +129,6 @@ fi
 #gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
 #gconftool-2 --type=string --set /desktop/gnome/interface/gtk_key_theme Emacs
 
-# terminal colors
-#source $HOME/.base16-default.dark.sh
-
 export HISTFILESIZE=
 export HISTSIZE=
 export HISTTIMEFORMAT="[%Y-%m-%d %T] "

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE="$HOME/programs/dotscala/target/universal/dotscala-1.0/bin/dotscala"
+FILE="$HOME/work/dotfiles/dotscala/target/universal/dotscala-1.0/bin/dotscala"
 
 if [ ! -f "$FILE" ]; then
   >&2 echo $FILE

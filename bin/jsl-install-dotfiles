@@ -25,6 +25,8 @@ doRsync() {
 
   rsync -m -rcip --links \
     --filter=':- .gitignore' \
+    --exclude=dotscala \
+    --exclude=dotcustom \
     --exclude=.git \
     --exclude='*.swp' \
     --exclude=README.md \
@@ -59,4 +61,4 @@ done
 #systemctl --user enable emacs
 #systemctl --user start emacs
 
-~/programs/dotscala/build
+~/work/dotfiles/dotscala/build
