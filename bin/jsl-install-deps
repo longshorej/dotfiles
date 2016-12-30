@@ -131,11 +131,6 @@ for PACKAGE in "${PACKAGES[@]}"; do
   dpkg -s "$PACKAGE" >/dev/null 2>&1 || APT_ALL_INSTALLED=0
 done
 
-if [ ! -f "/usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring" ]; then
-  echo "* making git contrib gnome-keyring"
-  sudo make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
-fi
-
 #if [ ! -f "/etc/apt/sources.list.d/percona.list" ]; then
 #  sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
 #  echo "deb http://repo.percona.com/apt jessie main" | sudo tee --append /etc/apt/sources.list.d/percona.list
@@ -146,6 +141,11 @@ fi
 if [ $APT_ALL_INSTALLED -eq 0 ]; then
   sudo apt-get -y update
   sudo apt-get install -y `join " " "${PACKAGES[@]}"`
+fi
+
+if [ ! -f "/usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring" ]; then
+  echo "* making git contrib gnome-keyring"
+  sudo make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
 fi
 
 #PIP_ALL_INSTALLED=1
