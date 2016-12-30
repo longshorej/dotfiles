@@ -6,6 +6,6 @@ mkdir -p "$HOME/music/flac"
 
 cd "$HOME/music/flac"
 
-# note: launch with longshorej-rip-cd -W <num> for multi-disc rips
+# note: launch with jsl-rip-cd -W <num> for multi-disc rips
 
 abcde -G -o flac -p "$@"

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec longshorej-dotscala -main info.longshore.dotscala.HelloWorld "$@"
+exec jsl-dotscala -main info.longshore.dotscala.HelloWorld "$@"

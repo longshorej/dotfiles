@@ -29,8 +29,8 @@ doRsync() {
     --exclude='*.swp' \
     --exclude=README.md \
     --exclude=LICENSE \
-    --exclude=bin/longshorej-install-dotfiles \
-    --exclude=bin/longshorej-install-deps "$1" ~
+    --exclude=bin/jsl-install-dotfiles \
+    --exclude=bin/jsl-install-deps "$1" ~
 }
 
 doRsync .
@@ -39,8 +39,8 @@ if [ -d "./programs/dotcustom/$HOSTNAME" ]; then
   doRsync "./programs/dotcustom/$HOSTNAME/"
 fi
 
-ln -sf ~/work/dotfiles/bin/longshorej-install-dotfiles ~/bin/longshorej-install-dotfiles
-ln -sf ~/work/dotfiles/bin/longshorej-install-deps ~/bin/longshorej-install-deps
+ln -sf ~/work/dotfiles/bin/jsl-install-dotfiles ~/bin/jsl-install-dotfiles
+ln -sf ~/work/dotfiles/bin/jsl-install-deps ~/bin/jsl-install-deps
 
 for MODULE in ${JSL_DOTFILES_MODULES[@]}; do
   if [ -d "$MODULE" ]; then
