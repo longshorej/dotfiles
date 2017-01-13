@@ -27,6 +27,7 @@ doRsync() {
     --filter=':- .gitignore' \
     --exclude=dotscala \
     --exclude=dotcustom \
+    --exclude=docker \
     --exclude=.git \
     --exclude='*.swp' \
     --exclude=README.md \
