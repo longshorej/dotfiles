@@ -17,6 +17,7 @@ PACKAGES=(
   ack-grep
   ansible
   apache2-utils
+  arandr
   build-essential
   cifs-utils
   chromium

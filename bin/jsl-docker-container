@@ -27,6 +27,4 @@ fi
 IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$1"`
 PID=`sudo docker inspect --format '{{ .State.Pid }}' "$1"`
 
-echo "$1 (pid: $PID) running on $IP"
-
-sudo nsenter --target "$PID" --mount --uts --ipc --net --pid
+echo "$1 (pid: $PID) running on $IP (to enter: nsenter --target "$PID" --mount --uts --ipc --net --pid)
