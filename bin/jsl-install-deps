@@ -93,6 +93,7 @@ PACKAGES=(
   pv
   python-pip
   python3-pip
+  qemu-kvm
   rdesktop
   rofi
   rxvt-unicode-256color
