@@ -1,82 +1,85 @@
+#!/bin/bash
+
+cat <<EOT
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set \$mod Mod1
 
-font xft:Envy Code R 10
+font xft:Share-TechMonoTrue $JSL_WM_FONT_SIZE
 
-floating_modifier $mod
+floating_modifier \$mod
 
-bindsym $mod+Return exec bash -c 'exec urxvt -cd "$(xcwd)"'
+bindsym \$mod+Return exec bash -c 'exec urxvt -cd "\$(xcwd)"'
 
 bindsym --release Print exec scrot -s ~/pictures/screenshots/%Y-%m-%d-%T.png
 
-bindsym $mod+q kill
+bindsym \$mod+q kill
 
-bindsym $mod+d exec --no-startup-id rofi -show run -terminal urxvt -bg "#252525" -fg "#f5f5f5" -hlbg "#11749C" -hlfg "#FFFFFF"
-bindsym $mod+Tab exec --no-startup-id rofi -show window -bg "#252525" -fg "#f5f5f5" -hlbg "#11749C" -hlfg "#FFFFFF"
+bindsym \$mod+d exec --no-startup-id rofi -font "Share-TechMonoTrue $JSL_WM_FONT_SIZE" -show run -terminal urxvt -bg "#252525" -fg "#f5f5f5" -hlbg "#11749C" -hlfg "#FFFFFF"
+bindsym \$mod+Tab exec --no-startup-id rofi -font "Share-TechMonoTrue $JSL_WM_FONT_SIZE" -show window -bg "#252525" -fg "#f5f5f5" -hlbg "#11749C" -hlfg "#FFFFFF"
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym \$mod+h focus left
+bindsym \$mod+j focus down
+bindsym \$mod+k focus up
+bindsym \$mod+l focus right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym \$mod+Shift+h move left
+bindsym \$mod+Shift+j move down
+bindsym \$mod+Shift+k move up
+bindsym \$mod+Shift+l move right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym \$mod+Shift+Left move left
+bindsym \$mod+Shift+Down move down
+bindsym \$mod+Shift+Up move up
+bindsym \$mod+Shift+Right move right
 
-bindsym $mod+v split h
+bindsym \$mod+v split h
 
-bindsym $mod+z split v
+bindsym \$mod+z split v
 
-bindsym $mod+f fullscreen
+bindsym \$mod+f fullscreen
 
-bindsym $mod+Shift+w layout tabbed
-bindsym $mod+w layout stacking
-bindsym $mod+e layout toggle split
+bindsym \$mod+Shift+w layout tabbed
+bindsym \$mod+w layout stacking
+bindsym \$mod+e layout toggle split
 
-bindsym $mod+Shift+space floating toggle
+bindsym \$mod+Shift+space floating toggle
 
-bindsym $mod+space focus mode_toggle
+bindsym \$mod+space focus mode_toggle
 
-bindsym $mod+a focus parent
+bindsym \$mod+a focus parent
 
-bindsym $mod+s focus child
+bindsym \$mod+s focus child
 
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
+bindsym \$mod+1 workspace number 1
+bindsym \$mod+2 workspace number 2
+bindsym \$mod+3 workspace number 3
+bindsym \$mod+4 workspace number 4
+bindsym \$mod+5 workspace number 5
+bindsym \$mod+6 workspace number 6
+bindsym \$mod+7 workspace number 7
+bindsym \$mod+8 workspace number 8
+bindsym \$mod+9 workspace number 9
 
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym \$mod+Shift+1 move container to workspace 1
+bindsym \$mod+Shift+2 move container to workspace 2
+bindsym \$mod+Shift+3 move container to workspace 3
+bindsym \$mod+Shift+4 move container to workspace 4
+bindsym \$mod+Shift+5 move container to workspace 5
+bindsym \$mod+Shift+6 move container to workspace 6
+bindsym \$mod+Shift+7 move container to workspace 7
+bindsym \$mod+Shift+8 move container to workspace 8
+bindsym \$mod+Shift+9 move container to workspace 9
 
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+Escape exec "i3-msg exit"
-bindsym $mod+Escape exec --no-startup-id "i3lock -u -c 333333"
+bindsym \$mod+Shift+c reload
+bindsym \$mod+Shift+r restart
+bindsym \$mod+Shift+Escape exec "i3-msg exit"
+bindsym \$mod+Escape exec --no-startup-id "i3lock -u -c 333333"
 
-bindsym $mod+semicolon move scratchpad
-bindsym $mod+apostrophe scratchpad show
+bindsym \$mod+semicolon move scratchpad
+bindsym \$mod+apostrophe scratchpad show
 
 #bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
 #bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
@@ -121,10 +124,10 @@ mode "resize" {
   bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym \$mod+r mode "resize"
 
 workspace_auto_back_and_forth yes
-bindsym $mod+0 workspace back_and_forth
+bindsym \$mod+0 workspace back_and_forth
 
 # stacked, tabbed, default
 workspace_layout stacked
@@ -187,3 +190,4 @@ exec --no-startup-id xset dpms 600
 exec --no-startup-id xautolock -time 5 -locker "i3lock -u -c 333333"
 exec --no-startup-id compton -CG --backend glx --vsync opengl-swc
 exec --no-startup-id dunst
+EOT

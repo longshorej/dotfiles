@@ -15,8 +15,8 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 !URxvt.color12: rgb:5c/5c/ff
 URxvt*scrollTtyKeypress: true
-URxvt.font: xft:envy code r:size=10:antialias=true
-URxvt.boldFont: xft:envy code r:bold:size=10:antialias=true
+URxvt.font: xft:Share\\\\-TechMonoTrue:size=$JSL_WM_FONT_SIZE:antialias=true
+URxvt.boldFont: xft:Share\\\\-TechMonoTrue:bold:size=$JSL_WM_FONT_SIZE:antialias=true
 URxvt*scrollBar: false
 !URxvt*background: Black
 !URxvt*foreground: White

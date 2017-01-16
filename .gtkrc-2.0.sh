@@ -3,7 +3,7 @@
 cat <<EOT
 gtk-theme-name="Adwaita"
 gtk-icon-theme-name="Adwaita"
-gtk-font-name="Sans 10"
+gtk-font-name="Sans $JSL_WM_FONT_SIZE"
 gtk-key-theme-name="Emacs"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0

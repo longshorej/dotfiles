@@ -20,6 +20,8 @@ $ ~/work/dotfiles/install-dotfiles
 
 ###### JSL_WM_HINTSTYLE
 
+###### JSL_WM_FONT_SIZE
+
 ###### JSL_DOTFILES_MODULES
 Contains space-separated paths to modules that are installed when jsl-install-dotfiles is run.
 
