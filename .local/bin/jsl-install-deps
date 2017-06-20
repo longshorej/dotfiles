@@ -22,6 +22,7 @@ PACKAGES=(
   cifs-utils
   chromium
   clang
+  cloc
   cmus
   colortest
   compton
@@ -31,6 +32,7 @@ PACKAGES=(
   dconf-cli
   debootstrap
   desktop-file-utils
+  dh-autoreconf
   dnsutils
   dunst
   expect
@@ -46,8 +48,10 @@ PACKAGES=(
   gimp
   glyrc
   golang-go
+  go-md2man
   gnome-keyring
   gnome-themes-standard
+  gpgv1
   haskell-platform
   i3
   icedove
@@ -58,18 +62,23 @@ PACKAGES=(
   libinput-tools
   libgc-dev
   libgnome-keyring-dev
+  libmusicbrainz-discid-perl
   libnotify-bin
   libpam-gnome-keyring
   libreoffice
   libreoffice-gtk3
+  libwebservice-musicbrainz-perl
   libx11-dev
   libxft-dev
   libxext-dev
+  linux-source
   lm-sensors
+  lnav
   lvm2
   makeself
   #mariadb-client
   #mariadb-server
+  maven
   mplayer
   mysql-workbench
   network-manager-gnome
@@ -77,11 +86,14 @@ PACKAGES=(
   network-manager-vpnc-gnome
   nmap
   nodejs
+  npm
   ntp
   openjdk-8-jdk
   openjdk-8-source
   openssh-client
   openssh-server
+  ovmf
+  pandoc
   paprefs
   parcellite
   pavucontrol
@@ -90,6 +102,7 @@ PACKAGES=(
   pidgin
   pidgin-libnotify
   pigz
+  #protobuf-compiler
   pulseaudio
   pv
   python-pip
@@ -107,6 +120,7 @@ PACKAGES=(
   sshfs
   subversion
   sxiv
+  texlive-latex-base
   thermald
   tmux
   tree
@@ -150,17 +164,17 @@ if [ ! -f "/usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gn
   sudo make --directory=/usr/share/doc/git/contrib/credential/gnome-keyring
 fi
 
-#PIP_ALL_INSTALLED=1
+PIP_ALL_INSTALLED=1
 
-#PIP_PACKAGES=(websocket-client sexpdata)
+PIP_PACKAGES=(pyinstaller websocket-client sexpdata)
 
-#for PACKAGE in "${PIP_PACKAGES[@]}"; do
-#  pip show "$PACKAGE" >/dev/null 2>&1 || PIP_ALL_INSTALLED=0
-#done
+for PACKAGE in "${PIP_PACKAGES[@]}"; do
+  pip show "$PACKAGE" >/dev/null 2>&1 || PIP_ALL_INSTALLED=0
+done
 
-#if [ $PIP_ALL_INSTALLED -eq 0 ]; then
-#  sudo pip install `join " " "${PIP_PACKAGES[@]}"`
-#fi
+if [ $PIP_ALL_INSTALLED -eq 0 ]; then
+  sudo pip install `join " " "${PIP_PACKAGES[@]}"`
+fi
 
 #go get github.com/rakyll/boom
 

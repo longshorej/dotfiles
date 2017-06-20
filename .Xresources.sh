@@ -11,6 +11,7 @@ Xft.rgba: rgb
 
 Xcursor.theme: Adwaita
 
+URxvt.perl-ext-common: ...,font-size
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 !URxvt.color12: rgb:5c/5c/ff
@@ -24,6 +25,9 @@ URxvt.letterSpace: 0
 URxvt.cursorBlink: 1
 URxvt.urgentOnBell: true
 URxvt*visualBell: false
+URxvt.keysym.C-equal: font-size:increase
+URxvt.keysym.C-minus: font-size:decrease
+URxvt.keysym.C-0: font-size:reset
 
 rofi.dpi: $JSL_WM_DPI
 rofi.color-enabled: true

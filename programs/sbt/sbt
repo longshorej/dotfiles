@@ -3,7 +3,9 @@
 if [ -f ./sbt ]; then
   exec ./sbt "$@"
 else
-  SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled"
+  if [ "$SBT_OPTS" == "" ]; then
+    export SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled"
+  fi
 
   exec java $SBT_OPTS -jar "$HOME/programs/sbt/sbt-launch.jar" "$@"
 fi
