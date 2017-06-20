@@ -188,6 +188,9 @@ exec --no-startup-id feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
 exec --no-startup-id synclient TouchpadOff=1
 exec --no-startup-id xset dpms 600
 exec --no-startup-id xautolock -time 5 -locker "i3lock -u -c 333333"
-exec --no-startup-id compton -CG --backend glx --vsync opengl-swc
 exec --no-startup-id dunst
 EOT
+
+if [ -f "$HOME/.i3/configlocal" ]; then
+  cat "$HOME/.i3/configlocal"
+fi
