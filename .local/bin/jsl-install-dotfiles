@@ -7,7 +7,7 @@ if [ ! -d ~/work/dotfiles ]; then
   exit 1
 fi
 
-mkdir -p ~/bin ~/desktop ~/documents ~/downloads ~/music ~/pictures ~/programs ~/videos ~/work
+mkdir -p ~/.local/bin ~/desktop ~/documents ~/downloads ~/music ~/pictures ~/programs ~/videos ~/work
 
 cd ~/work/dotfiles
 
@@ -20,7 +20,7 @@ cd ~/work/dotfiles
 
 git submodule foreach git pull origin master
 
-doRsync() {
+do-rsync() {
   echo "* syncing $1"
 
   rsync -m -rcip --links \
@@ -36,30 +36,30 @@ doRsync() {
     --exclude=bin/jsl-install-deps "$1" ~
 }
 
-doRsync .
+do-rsync .
 
 if [ -d "./dotcustom/$HOSTNAME" ]; then
-  doRsync "./dotcustom/$HOSTNAME/"
+  do-rsync "./dotcustom/$HOSTNAME/"
 fi
 
-ln -sf ~/work/dotfiles/bin/jsl-install-dotfiles ~/bin/jsl-install-dotfiles
-ln -sf ~/work/dotfiles/bin/jsl-install-deps ~/bin/jsl-install-deps
+ln -sf ~/work/dotfiles/bin/jsl-install-dotfiles ~/.local/bin/jsl-install-dotfiles
+ln -sf ~/work/dotfiles/bin/jsl-install-deps ~/.local/bin/jsl-install-deps
 
-for MODULE in ${JSL_DOTFILES_MODULES[@]}; do
-  if [ -d "$MODULE" ]; then
-     echo "* installing module $MODULE"
-
-     (cd "$MODULE" && git pull)
-     (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
-     (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
-
-     if [ -f "$MODULE/install-dotfiles" ]; then
-       . "$MODULE/install-dotfiles"
-     fi
-  fi
-done
+#for MODULE in ${JSL_DOTFILES_MODULES[@]}; do
+#  if [ -d "$MODULE" ]; then
+#     echo "* installing module $MODULE"
+#
+#     (cd "$MODULE" && git pull)
+#     (cd "$MODULE" && git submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull')
+#     (cd "$MODULE" && rsync -rcip --exclude=.git --exclude=README.md --exclude=LICENSE . ~)
+#
+#     if [ -f "$MODULE/install-dotfiles" ]; then
+#       . "$MODULE/install-dotfiles"
+#     fi
+#  fi
+#done
 
 #systemctl --user enable emacs
 #systemctl --user start emacs
 
-~/work/dotfiles/dotscala/build
+#~/work/dotfiles/dotscala/build

@@ -59,6 +59,7 @@ PACKAGES=(
   iotop
   iperf
   irssi
+  kubernetes-client
   libinput-tools
   libgc-dev
   libgnome-keyring-dev
