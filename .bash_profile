@@ -5,8 +5,8 @@ fi
 export BROWSER=firefox
 export EDITOR=vim
 
-if [ -e "$HOME/.bash_profilelocal" ]; then
-    source "$HOME/.bash_profilelocal"
+if [ -e "$HOME/.local/.bash_profile" ]; then
+    source "$HOME/.local/.bash_profile"
 fi
 
 if [ "$JSL_WM_DPI" == "" ]; then
