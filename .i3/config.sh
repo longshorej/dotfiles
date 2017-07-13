@@ -141,23 +141,26 @@ for_window [class="Firefox" window_role="Preferences"] floating enable
 for_window [class="Firefox" window_role="Organizer"] floating enable
 for_window [class="Firefox" window_role="page-info"] floating enable
 for_window [class="Firefox" window_role="view-source"] floating enable
-for_window [class="Evolution" title="Compose Message"] floating enable
+#for_window [class="Evolution" title="Compose Message"] floating enable
 #for_window [class="Pidgin" window_role="buddy_list"] floating enable
-for_window [class="Pavucontrol"] floating enable
+#for_window [class="Pavucontrol"] floating enable
 #for_window [class="feh"] floating enable
 #for_window [class="Eog"] floating enable
 for_window [class="Thunderbird" window_role="Preferences"] floating enable
-for_window [class="Thunderbird" window_role="Msgcompose"] floating enable
-for_window [class="Gnome-terminal" window_role="floating"] floating enable
+#for_window [class="Thunderbird" window_role="Msgcompose"] floating enable
+#for_window [class="Gnome-terminal" window_role="floating"] floating enable
 #for_window [instance="gimp"] floating enable
 
+# float these because they're buggy when they aren't
+for_window [class="VirtualBox"] floating enable
+for_window [class="Spotify"] floating enable
 
 
-assign [class="Thunderbird"] 8
-assign [class="Icedove"] 8
-assign [class="Firefox"] 1
-assign [class="Pidgin"] 8
-assign [class="jetbrains-idea"] 2
+#assign [class="Thunderbird"] 8
+#assign [class="Icedove"] 8
+#assign [class="Firefox"] 1
+#assign [class="Pidgin"] 8
+#assign [class="jetbrains-idea"] 2
 
 bar {
   status_command i3status
@@ -177,6 +180,7 @@ client.focused #FFFFFF #11749C  #FFFFFF #90A959
 client.unfocused #505050 #252525 #f5f5f5
 focus_follows_mouse yes
 
+exec --no-startup-id compton --vsync opengl --xrender-synccompton
 exec --no-startup-id nm-applet
 exec --no-startup-id xbanish
 exec --no-startup-id parcellite

@@ -1,6 +1,6 @@
 [global]
-    font = Share-TechMonoTrue 16
-    allow_markup = yes
+    font = Share-TechMonoTrue 10
+    markup = yes
     format = "%s\n%b"
     sort = yes
     indicate_hidden = yes
@@ -23,10 +23,8 @@
     startup_notification = false
     dmenu = /usr/bin/dmenu -p dunst
     browser = /usr/bin/firefox -new-tab
-
-[frame]
-    width = 4
-    color = "#FFFFFF"
+    frame_width = 4
+    frame_color = "#FFFFFF"
 
 [shortcuts]
     close = ctrl+space

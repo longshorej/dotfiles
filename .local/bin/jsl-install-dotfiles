@@ -42,8 +42,8 @@ if [ -d "./dotcustom/$HOSTNAME" ]; then
   do-rsync "./dotcustom/$HOSTNAME/"
 fi
 
-ln -sf ~/work/dotfiles/bin/jsl-install-dotfiles ~/.local/bin/jsl-install-dotfiles
-ln -sf ~/work/dotfiles/bin/jsl-install-deps ~/.local/bin/jsl-install-deps
+ln -sf ~/work/dotfiles/.local/bin/jsl-install-dotfiles ~/.local/bin/jsl-install-dotfiles
+#ln -sf ~/work/dotfiles/.local/bin/jsl-install-deps ~/.local/bin/jsl-install-deps
 
 #for MODULE in ${JSL_DOTFILES_MODULES[@]}; do
 #  if [ -d "$MODULE" ]; then
