@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+for u in $(users); do
+  system_sleep="$(eval echo "~$u")/.config/systemd/user/system-sleep"
+
+  if [ -d "$system_sleep" ]; then
+    for f in $system_sleep/*; do
+      if [ -x "$f" ]; then
+        (exec "$f" "$@")
+      fi
+    done
+  fi
+done

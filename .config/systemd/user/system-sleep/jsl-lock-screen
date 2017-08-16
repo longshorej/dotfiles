@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+logger i should lock screen $@

@@ -184,13 +184,9 @@ exec --no-startup-id compton --vsync opengl --xrender-sync
 exec --no-startup-id nm-applet
 exec --no-startup-id xbanish
 exec --no-startup-id parcellite
-exec --no-startup-id xset -b
-exec --no-startup-id xset m 1 1
-exec --no-startup-id xset r rate 250 50
+exec --no-startup-id ~/.local/bin/jsl-x11-configure
 exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
-exec --no-startup-id synclient TouchpadOff=1
-exec --no-startup-id xset dpms 600
 exec --no-startup-id xautolock -time 5 -locker "i3lock -u -c 333333"
 exec --no-startup-id dunst
 EOT

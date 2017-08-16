@@ -28,6 +28,7 @@ do-rsync() {
     --exclude=dotscala \
     --exclude=dotcustom \
     --exclude=docker \
+    --exclude=system \
     --exclude=.git \
     --exclude='*.swp' \
     --exclude=README.md \
@@ -41,6 +42,8 @@ do-rsync .
 if [ -d "./dotcustom/$HOSTNAME" ]; then
   do-rsync "./dotcustom/$HOSTNAME/"
 fi
+
+sudo rsync -m -rcip --links --filter=':- .gitignore' "./system/" "/"
 
 ln -sf ~/work/dotfiles/.local/bin/jsl-install-dotfiles ~/.local/bin/jsl-install-dotfiles
 #ln -sf ~/work/dotfiles/.local/bin/jsl-install-deps ~/.local/bin/jsl-install-deps
