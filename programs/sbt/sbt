@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export TERM=xterm-color
+
 if [ -f ./sbt ]; then
   exec ./sbt "$@"
 else
