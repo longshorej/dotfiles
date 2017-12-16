@@ -5,12 +5,13 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 #compton --vsync opengl --xrender-sync
 #nm-applet
 #xbanish
-parcellite
+#parcellite
 ~/.local/bin/jsl-x11-configure
 xrdb ~/.Xresources
 feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
-xautolock -time 5 -locker "i3lock -u -c 333333"
-dunst
+xsetroot -cursor_name left_ptr
+#xautolock -time 5 -locker "i3lock -u -c 333333"
+#dunst
 
 if [ -f "$HOME/.xmonad/startup-hook-local" ]; then
   source "$HOME/.xmonad/startup-hook-local
