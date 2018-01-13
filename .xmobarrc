@@ -5,14 +5,15 @@ Config {
   position = Bottom,
   lowerOnStart = True,
   commands = [
-    Run Network "wlan0" ["-L","0","-H","32","--normal","green","--high","red"] 10,
-    Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10,
-    Run Memory ["-t","Mem: <usedratio>%"] 10,
-    Run Date "<fc=#93a1a1>%m/%d/%Y %l:%M %P</fc>" "date" 10,
-    Run DiskIO [("/", "IO: <total>"), ("sda4", "<total>")] [] 10,
+    Run Battery ["-t", "<fc=#C0C0C0>AC:</fc> <acstatus> <fc=#C0C0C0>Battery:</fc> <left>% (<timeleft>)"] 10,
+    Run Cpu ["-t", "<fc=#C0C0C0>CPU</fc>: <total>%", "-L","3","-H","50","--normal","green","--high","red"] 10,
+    Run DiskU [("/", "<free>")] [] 10,
+    Run Memory ["-t","<fc=#C0C0C0>RAM:</fc> <usedratio>%"] 10,
+    Run Date "<fc=#C0C0C0>%m/%d/%Y %l:%M %P</fc>" "date" 10,
+    Run DiskIO [("/", "<fc=#C0C0C0>IO:</fc> <total>"), ("sda", "<total>")] [] 10,
     Run StdinReader
   ],
   sepChar = "%",
   alignSep = "}{",
-  template = "%StdinReader% }{%cpu%  %memory%  %wlan0%  %diskio%  %date%"
+  template = " %StdinReader% }{%cpu%  %memory%  %diskio%  %disku%  %battery%  %date% "
 }

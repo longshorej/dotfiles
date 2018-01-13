@@ -12,6 +12,9 @@ feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
 xsetroot -cursor_name left_ptr
 #xautolock -time 5 -locker "i3lock -u -c 333333"
 #dunst
+xmodmap -e 'keycode 66 = Control_L'
+xmodmap -e 'clear Lock'
+xmodmap -e 'add Control = Control_L'
 
 if [ -f "$HOME/.xmonad/startup-hook-local" ]; then
   source "$HOME/.xmonad/startup-hook-local

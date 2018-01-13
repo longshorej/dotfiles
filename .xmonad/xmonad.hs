@@ -5,6 +5,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Spacing
 import XMonad.Util.Run
 
 import qualified XMonad.StackSet as W
@@ -15,11 +16,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm,               xK_Return), spawn $ XMonad.terminal conf)
 
-    -- launch dmenu
+    -- launch rofi
     , ((modm,               xK_d     ), spawn "rofi -font \"Share-TechMonoTrue 10\" -show run -terminal urxvt -bg \"#252525\" -fg \"#f5f5f5\" -hlbg \"#11749C\" -hlfg \"#FFFFFF\"")
-
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm,               xK_q     ), kill)
@@ -34,7 +32,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_n     ), refresh)
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ((modm,               xK_Tab   ), spawn "rofi -font \"Share-TechMonoTrue 10\" -show window -bg \"#252525\" -fg \"#f5f5f5\" -hlbg \"#11749C\" -hlfg \"#FFFFFF\"")
 
     -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)
@@ -46,7 +44,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_m     ), windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    --, ((modm,               xK_Return), windows W.swapMaster)
+    , ((modm,               xK_f), windows W.swapMaster)
 
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
@@ -72,8 +70,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_Escape), io (exitWith ExitSuccess))
