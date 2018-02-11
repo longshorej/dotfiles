@@ -2,19 +2,20 @@
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-#compton --vsync opengl --xrender-sync
 #nm-applet
-#xbanish
 #parcellite
 ~/.local/bin/jsl-x11-configure
+#compton --config /dev/null --backend glx --vsync opengl
 xrdb ~/.Xresources
 feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
 xsetroot -cursor_name left_ptr
 #xautolock -time 5 -locker "i3lock -u -c 333333"
+#~/.local/bin/xbanish
 #dunst
-xmodmap -e 'keycode 66 = Control_L'
-xmodmap -e 'clear Lock'
-xmodmap -e 'add Control = Control_L'
+#xmodmap -e 'keycode 66 = Control_L'
+#xmodmap -e 'clear Lock'
+#xmodmap -e 'add Control = Control_L'
+
 
 if [ -f "$HOME/.xmonad/startup-hook-local" ]; then
   source "$HOME/.xmonad/startup-hook-local

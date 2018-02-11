@@ -99,6 +99,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
+myStartupHook = do
+  spawn "~/.xmonad/startup-hook"
+  spawn "compton --config /dev/null --backend glx --vsync opengl"
+  spawn "~/.local/bin/xbanish"
+
 main = do
   -- start Xmobar process
   h <- spawnPipe "xmobar -d"
@@ -118,10 +123,7 @@ main = do
     normalBorderColor = "#252525",
     focusedBorderColor = "#00FF00",
     terminal = "urxvt",
-    startupHook = do
-      spawn "~/.xmonad/startup-hook",
-    -- startup = do
-   --    spawn "~/.xmonad/startup",
+    startupHook = myStartupHook,
     manageHook = doF W.swapDown <+> manageDocks,
     handleEventHook = handleEventHook defaultConfig <+> docksEventHook,
     keys = myKeys

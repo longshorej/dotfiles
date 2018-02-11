@@ -3,14 +3,23 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (setq package-list
-      '(base16-theme company ensime magit racer rust-mode scala-mode))
+      '(base16-theme
+	company
+	counsel
+	ensime
+	find-file-in-project
+	haskell-mode
+	magit
+	racer
+	rust-mode
+	scala-mode))
 
 ; activate all the packages
 (package-initialize)
 
 ; fetch the list of packages available
-;(unless package-archive-contents
-  (package-refresh-contents)
+(unless package-archive-contents
+  (package-refresh-contents))
 
 ; install the missing packages
 (dolist (package package-list)
@@ -18,18 +27,56 @@
     (package-install package)))
 
 
+
 (setq-default cursor-type 'bar)
-(load-theme 'base16-bright t)
+(load-theme 'base16-chalk t)
+(set-background-color "#000000")
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (set-default-font "Envy Code R 10")
 (cua-mode t)
+(ivy-mode t)
+(setq backup-inhibited t)
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+
+					; ivy, tab dont enter
+;(define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+
+
+; disable annoying prompt stuff
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
+
+
+
+(setq kill-buffer-query-functions
+  (remq 'process-kill-buffer-query-function
+	kill-buffer-query-functions))
+(setq confirm-nonexistent-file-or-buffer nil)
+(fset 'yes-or-no-p 'y-or-n-p)
+(defadvice yes-or-no-p (around hack-exit (prompt))
+   (if (string= prompt "Active processes exist; kill them and exit anyway? ")
+       t
+      ad-do-it))
+
 ;(add-to-list 'default-frame-alist '(font . "Share-TechMonoTrue" ))
 ;(set-face-attribute 'default t :font "Share-TechMonoTrue" )
 					;(set-face-attribute 'default nil :height 50)
 
 (global-set-key [?\C-h] 'delete-backward-char)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "M-p") 'find-file-in-project)
 
 (setq c-basic-offset 2) ; indents 4 chars
 (setq tab-width 2)          ; and 4 char wide for TAB
