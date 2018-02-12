@@ -3,13 +3,16 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 (setq package-list
-      '(base16-theme
+      '(ag
+	base16-theme
 	company
 	counsel
+	dirtree
 	ensime
 	find-file-in-project
 	haskell-mode
 	magit
+	markdown-mode
 	racer
 	rust-mode
 	scala-mode))

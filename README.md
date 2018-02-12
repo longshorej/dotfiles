@@ -1,10 +1,10 @@
 # longshorej's dotfiles
 
-This repository contains programs and configurations for use on a computer running Debian testing.
+This repository contains programs and configurations for use on a computer running Arch Linux.
 
 ## Features
 
-TODO
+...
 
 ## Installation
 
