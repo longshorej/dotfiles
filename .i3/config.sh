@@ -130,7 +130,7 @@ workspace_auto_back_and_forth yes
 bindsym \$mod+0 workspace back_and_forth
 
 # stacked, tabbed, default
-workspace_layout stacked
+workspace_layout default
 
 default_orientation horizontal
 

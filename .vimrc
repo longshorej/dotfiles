@@ -12,8 +12,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rsi'
 Plugin 'chriskempson/base16-vim'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'puppetlabs/puppet-syntax-vim'
@@ -34,6 +35,9 @@ Plugin 'terryma/vim-expand-region'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'Valloric/YouCompleteMe'
+Plugin 'fatih/vim-go'
+Plugin 'racer-rust/vim-racer'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -52,15 +56,42 @@ let g:ctrlp_working_path_mode=0
 let mapleader=' '
 
 set background=dark
-" colorscheme base16-default-dark
+colorscheme base16-chalk
+let base16colorspace=256
 let g:airline_theme='jellybeans'
+let g:airline_powerline_fonts = 0
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.branch = '⭠'
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = '⭡'
+
 set t_md=
 filetype on
 syntax on
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/vendor,*/.ensime*,*/webjars,*/target,*/wms1/data,*/wms2/*/managed
 set title titlestring=%F\ -\ vim
 set number
-set colorcolumn=120
+"set colorcolumn=120
 set laststatus=2
 set foldcolumn=0
 set noswapfile
@@ -74,8 +105,9 @@ set nowrap
 set hlsearch
 set scrolloff=10
 set autoread
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set go+=a
+set hidden
 
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 highlight CursorLine ctermfg=white ctermbg=DarkGrey
@@ -161,6 +193,13 @@ nnoremap <space>go :Git checkout<Space>
 
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+" rust
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+let g:racer_experimental_completer = 1
 
 function! FindCodeDirOrHome()
   let filedir = expand('%:p:h')

@@ -21,4 +21,6 @@ if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
   export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
 fi
 
+exec i3
+
 exec xmonad

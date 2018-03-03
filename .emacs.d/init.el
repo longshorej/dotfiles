@@ -10,6 +10,7 @@
 	dirtree
 	ensime
 	find-file-in-project
+  go-mode
 	haskell-mode
 	magit
 	markdown-mode

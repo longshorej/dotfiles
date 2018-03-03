@@ -4,7 +4,7 @@ set -e
 
 mkdir -p "$HOME/work/prettyhatemachine"
 
-mountpoint -q "$HOME/work/prettyhatemachine" || sshfs -o allow_other longshorej@prettyhatemachine.local:/ "$HOME/work/prettyhatemachine"
+mountpoint -q "$HOME/work/prettyhatemachine" || sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 longshorej@prettyhatemachine.local:/ "$HOME/work/prettyhatemachine"
 
 if [ ! -e "$HOME/music/prettyhatemachine" ]; then
   ln -s "$HOME/work/prettyhatemachine/data/music" "$HOME/music/prettyhatemachine"

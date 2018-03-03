@@ -5,8 +5,16 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Util.EZConfig
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad.Layout.Spacing
+import XMonad.Layout.Fullscreen
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spiral
+import XMonad.Layout.Tabbed
+import XMonad.Layout.ThreeColumns
 import XMonad.Util.Run
+
+
+
+
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -104,12 +112,33 @@ myStartupHook = do
   spawn "compton --config /dev/null --backend glx --vsync opengl"
   spawn "~/.local/bin/xbanish"
 
+--myLayoutHook = avoidStruts(smartBorders(ThreeColMid 1 (3/100) (1/2)))
+
+tabConfig = defaultTheme {
+    activeBorderColor = "#7C7C7C",
+    activeTextColor = "#CEFFAC",
+    activeColor = "#000000",
+    inactiveBorderColor = "#7C7C7C",
+    inactiveTextColor = "#EEEEEE",
+    inactiveColor = "#000000"
+}
+
+myLayout = avoidStruts (
+    ThreeColMid 1 (3/100) (1/2) |||
+    Tall 1 (3/100) (1/2) |||
+    Mirror (Tall 1 (3/100) (1/2)) |||
+    Full |||
+    noBorders (fullscreenFull Full)
+    )
+    
 main = do
   -- start Xmobar process
   h <- spawnPipe "xmobar -d"
   xmonad $ def {
       -- this adds a fixup for docks
-    layoutHook = avoidStruts $ layoutHook def,
+    -- layoutHook = avoidStruts $ layoutHook def,
+
+    layoutHook = smartBorders $ myLayout,
 
     -- this adds Xmobar to Xmonad
     logHook = dynamicLogWithPP $
@@ -125,6 +154,7 @@ main = do
     terminal = "urxvt",
     startupHook = myStartupHook,
     manageHook = doF W.swapDown <+> manageDocks,
+    -- manageHook = manageDocks,
     handleEventHook = handleEventHook defaultConfig <+> docksEventHook,
     keys = myKeys
   }

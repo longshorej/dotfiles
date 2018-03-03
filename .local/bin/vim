@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+if ! which xclip &>/dev/null; then
+  echo "$0: cannot find xclip"
+  exit 1
+fi
+
+if which nvim &>/dev/null; then
+  exec nvim "$@"
+else
+  exec vim "$@"
+fi

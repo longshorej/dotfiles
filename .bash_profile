@@ -2,6 +2,14 @@ if [ -d "$HOME/.local/bin" ] ; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo/bin" ] ; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if which rustc &>/dev/null; then
+  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
 export BROWSER=firefox
 export EDITOR=vim
 
@@ -18,7 +26,7 @@ if [ "$JSL_WM_HINTSTYLE" == "" ]; then
 fi
 
 if [ "$JSL_WM_FONT_SIZE" == "" ]; then
-  export JSL_WM_FONT_SIZE=10
+  export JSL_WM_FONT_SIZE=9
 fi
 
 "$HOME/.Xresources.sh" > "$HOME/.Xresources"
