@@ -180,7 +180,7 @@ client.focused #FFFFFF #11749C  #FFFFFF #90A959
 client.unfocused #505050 #252525 #f5f5f5
 focus_follows_mouse yes
 
-exec --no-startup-id compton --vsync opengl --xrender-sync
+exec --no-startup-id compton --config /dev/null --vsync opengl --xrender-sync
 exec --no-startup-id nm-applet
 exec --no-startup-id xbanish
 exec --no-startup-id parcellite
