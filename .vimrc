@@ -37,6 +37,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'fatih/vim-go'
 Plugin 'racer-rust/vim-racer'
+Plugin 'cespare/vim-toml'
 
 
 call vundle#end()
@@ -108,14 +109,17 @@ set autoread
 set clipboard+=unnamedplus
 set go+=a
 set hidden
+set virtualedit=all
 
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 highlight CursorLine ctermfg=white ctermbg=DarkGrey
-highlight Search ctermfg=white ctermbg=DarkGrey
-highlight IncSearch ctermfg=white ctermbg=DarkGrey
+highlight Search ctermfg=white ctermbg=Blue
+highlight IncSearch ctermfg=white ctermbg=Blue
 highlight Pmenu ctermfg=white ctermbg=DarkGrey
-highlight Visual ctermfg=white ctermbg=DarkRed
-highlight StatusLine ctermfg=white ctermbg=DarkRed
+highlight Visual ctermfg=white ctermbg=Blue
+highlight StatusLine ctermfg=white ctermbg=DarkGrey
+highlight TabLine ctermfg=white ctermbg=DarkBlue
+highlight WildMenu ctermfg=white ctermbg=DarkBlue
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -140,13 +144,17 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 nnoremap \ :Ag<SPACE>
 
-" Make sure that unsaved buffers that are to be put in the background are 
+" Make sure that unsaved buffers that are to be put in the background are
 " allowed to go in there (ie. the "must save first" error doesn't come up)
 set hidden
 
 
 " Don't update the display while executing macros
 set lazyredraw
+
+
+" Trim whitespace
+autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 
 " Toggle paste mode
