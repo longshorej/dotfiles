@@ -81,14 +81,10 @@ bindsym \$mod+Escape exec --no-startup-id "i3lock -u -c 333333"
 bindsym \$mod+semicolon move scratchpad
 bindsym \$mod+apostrophe scratchpad show
 
-#bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
-#bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
-#bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
-
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/pulseaudio-ctl up
+bindsym XF86AudioLowerVolume exec --no-startup-id /usr/bin/pulseaudio-ctl down
+bindsym XF86AudioMute exec --no-startup-id /usr/bin/pulseaudio-ctl mute
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
@@ -180,7 +176,7 @@ client.focused #FFFFFF #11749C  #FFFFFF #90A959
 client.unfocused #505050 #252525 #f5f5f5
 focus_follows_mouse yes
 
-exec --no-startup-id compton --config /dev/null --vsync opengl --xrender-sync
+exec --no-startup-id compton --config /dev/null --vsync opengl --backend glx
 exec --no-startup-id nm-applet
 exec --no-startup-id xbanish
 exec --no-startup-id parcellite
