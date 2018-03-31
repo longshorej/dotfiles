@@ -7,6 +7,8 @@ endif
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'jacoborus/tender.vim'
+Plugin 'godlygeek/csapprox'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rsi'
@@ -39,6 +41,10 @@ Plugin 'fatih/vim-go'
 Plugin 'racer-rust/vim-racer'
 Plugin 'cespare/vim-toml'
 
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 
 call vundle#end()
 filetype plugin indent on
@@ -57,7 +63,7 @@ let g:ctrlp_working_path_mode=0
 let mapleader=' '
 
 set background=dark
-colorscheme base16-chalk
+colorscheme tender
 let base16colorspace=256
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 0
@@ -106,20 +112,11 @@ set nowrap
 set hlsearch
 set scrolloff=10
 set autoread
-set clipboard+=unnamedplus
+set clipboard^=unnamed,unnamedplus
 set go+=a
 set hidden
 set virtualedit=all
 
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-highlight CursorLine ctermfg=white ctermbg=DarkGrey
-highlight Search ctermfg=white ctermbg=Blue
-highlight IncSearch ctermfg=white ctermbg=Blue
-highlight Pmenu ctermfg=white ctermbg=DarkGrey
-highlight Visual ctermfg=white ctermbg=Blue
-highlight StatusLine ctermfg=white ctermbg=DarkGrey
-highlight TabLine ctermfg=white ctermbg=DarkBlue
-highlight WildMenu ctermfg=white ctermbg=DarkBlue
 
 map <C-n> :NERDTreeToggle<CR>
 
