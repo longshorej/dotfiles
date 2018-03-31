@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -e
+
+# This polls battery/ac status (could be made more efficient using udev events)
+# and flashes the screen red if on battery and under a particular threshold.
+
+SLEEP_FLASH=0.5
+SLEEP_POLL=15
+LOW_BATTERY=8
+
+function battery {
+  if [ "$(cat /sys/class/power_supply/AC/online 2>/dev/null || echo 1)" = 0 ]; then
+    grep POWER_SUPPLY_CAPACITY= /sys/class/power_supply/BAT0/uevent | sed s/^.*=//g 2>/dev/null || echo 100
+  else
+    echo 100
+  fi
+}
+
+function gamma {
+  for output in $(xrandr --query | grep ' connected' | awk '{print $1}'); do
+    xrandr --output "$output" --gamma "$1"
+  done
+}
+
+trap 'gamma 1:1:1' EXIT
+
+while [ true ]; do
+  while [ "$(battery)" -lt "$LOW_BATTERY" ]; do
+    gamma 3:1:1
+    sleep "$SLEEP_FLASH" || true
+    gamma 1:1:1
+    sleep "$SLEEP_FLASH" || true
+  done
+
+  sleep "$SLEEP_POLL" || true
+done

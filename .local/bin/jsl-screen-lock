@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+xset dpms force off &
+i3lock -u -c 333333 &
+
+wait

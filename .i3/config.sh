@@ -76,7 +76,7 @@ bindsym \$mod+Shift+9 move container to workspace 9
 bindsym \$mod+Shift+c reload
 bindsym \$mod+Shift+r restart
 bindsym \$mod+Shift+Escape exec "i3-msg exit"
-bindsym \$mod+Escape exec --no-startup-id "i3lock -u -c 333333"
+bindsym \$mod+Escape exec --no-startup-id xautolock -locknow
 
 bindsym \$mod+semicolon move scratchpad
 bindsym \$mod+apostrophe scratchpad show
@@ -183,8 +183,9 @@ exec --no-startup-id parcellite
 exec --no-startup-id ~/.local/bin/jsl-x11-configure
 exec --no-startup-id xrdb ~/.Xresources
 exec --no-startup-id feh --bg-fill ~/pictures/backgrounds/solar_system-wide.jpg
-exec --no-startup-id xautolock -time 5 -locker "i3lock -u -c 333333"
+exec --no-startup-id xautolock -time 5 -locker jsl-screen-lock
 exec --no-startup-id dunst
+exec --no-startup-id jsl-screen-flash
 EOT
 
 if [ -f "$HOME/.i3/configlocal" ]; then
