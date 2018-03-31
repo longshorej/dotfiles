@@ -7,39 +7,38 @@ endif
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'jacoborus/tender.vim'
+"Plugin 'jiangmiao/auto-pairs'
+"Plugin 'maralla/completor.vim'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'cespare/vim-toml'
+Plugin 'chriskempson/base16-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'ensime/ensime-vim'
+Plugin 'fatih/vim-go'
 Plugin 'godlygeek/csapprox'
-Plugin 'VundleVim/Vundle.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'jacoborus/tender.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'luochen1990/rainbow'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'osyo-manga/vim-over'
+Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'racer-rust/vim-racer'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rsi'
-Plugin 'chriskempson/base16-vim'
-Plugin 'derekwyatt/vim-scala'
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
-Plugin 'itchyny/lightline.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'rking/ag.vim'
-Plugin 'osyo-manga/vim-over'
-Plugin 'luochen1990/rainbow'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-sensible'
-"Plugin 'altercation/vim-colors-solarized'
-Plugin 'terryma/vim-expand-region'
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/unite.vim'
-"Plugin 'StanAngeloff/php.vim'
-"Plugin 'scrooloose/syntastic'
-Plugin 'ensime/ensime-vim'
-"Plugin 'jiangmiao/auto-pairs'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'fatih/vim-go'
-Plugin 'racer-rust/vim-racer'
-Plugin 'cespare/vim-toml'
+Plugin 'tpope/vim-surround'
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'w0rp/ale'
+
+if &term=~'linux'
+  let g:CSApprox_loaded = 1
+endif
 
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
@@ -115,7 +114,7 @@ set autoread
 set clipboard^=unnamed,unnamedplus
 set go+=a
 set hidden
-set virtualedit=all
+"set virtualedit=all
 
 
 map <C-n> :NERDTreeToggle<CR>
@@ -194,7 +193,7 @@ nnoremap <space>go :Git checkout<Space>
 nnoremap <space>nt :EnType<CR>
 nnoremap <space>nd :EnDeclaration<CR>
 nnoremap <space>ns :EnDeclarationSplit<CR>
-autocmd BufWritePost *.scala :EnTypeCheck
+"autocmd BufWritePost *.scala :EnTypeCheck
 
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
@@ -205,6 +204,14 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 let g:racer_experimental_completer = 1
+
+" completor
+
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+"let g:completor_auto_trigger = 0
+"inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
 
 function! FindCodeDirOrHome()
   let filedir = expand('%:p:h')

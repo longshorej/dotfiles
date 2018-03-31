@@ -34,4 +34,9 @@ fi
 "$HOME/.gtkrc-2.0.sh" > "$HOME/.gtkrc-2.0"
 "$HOME/.i3/config.sh" > "$HOME/.i3/config"
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx -- -dpi $JSL_WM_DPI
+if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx -- -dpi $JSL_WM_DPI
+elif [[ -z $DISPLAY ]]; then
+  source "$HOME/.bashrc"
+  clear
+fi

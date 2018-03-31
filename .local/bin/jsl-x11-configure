@@ -3,5 +3,6 @@
 xset -b
 xset m 1 1
 xset r rate 250 50
-xset dpms 600
+xset s 300
+xset dpms 300
 #synclient TouchpadOff=1
