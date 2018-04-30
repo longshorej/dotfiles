@@ -10,8 +10,10 @@ call vundle#begin()
 "Plugin 'jiangmiao/auto-pairs'
 "Plugin 'maralla/completor.vim'
 "Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'cespare/vim-toml'
 Plugin 'chriskempson/base16-vim'
+Plugin 'cseelus/vim-colors-lucid'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'ensime/ensime-vim'
@@ -19,6 +21,7 @@ Plugin 'fatih/vim-go'
 Plugin 'godlygeek/csapprox'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jacoborus/tender.vim'
+Plugin 'kiddos/malokai.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -35,7 +38,6 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'w0rp/ale'
-
 if &term=~'linux'
   let g:CSApprox_loaded = 1
 endif
@@ -62,7 +64,7 @@ let g:ctrlp_working_path_mode=0
 let mapleader=' '
 
 set background=dark
-colorscheme tender
+colorscheme malokai
 let base16colorspace=256
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 0
@@ -119,6 +121,7 @@ set hidden
 
 map <C-n> :NERDTreeToggle<CR>
 
+set cursorline
 
 "set autochdir
 
