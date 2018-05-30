@@ -8,7 +8,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 "Plugin 'jiangmiao/auto-pairs'
-"Plugin 'maralla/completor.vim'
+Plugin 'maralla/completor.vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'cespare/vim-toml'
@@ -19,9 +19,10 @@ Plugin 'derekwyatt/vim-scala'
 Plugin 'ensime/ensime-vim'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/csapprox'
+"Plugin 'KevinGoodsell/vim-csexact'
 Plugin 'itchyny/lightline.vim'
 Plugin 'jacoborus/tender.vim'
-Plugin 'kiddos/malokai.vim'
+"Plugin 'kiddos/malokai.vim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'mxw/vim-jsx'
@@ -66,8 +67,10 @@ let g:ctrlp_working_path_mode=0
 let mapleader=' '
 
 set background=dark
-colorscheme malokai
-let base16colorspace=256
+"colorscheme malokai
+colorscheme base16-default-dark
+"set t_Co=256 " 256 color mode
+"let base16colorspace=256
 let g:airline_theme='jellybeans'
 let g:airline_powerline_fonts = 0
 
@@ -214,7 +217,7 @@ let g:racer_experimental_completer = 1
 
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
 "let g:completor_auto_trigger = 0
 "inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
 
