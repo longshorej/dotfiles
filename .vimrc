@@ -59,6 +59,8 @@ Plugin 'prabirshrestha/vim-lsp'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 
+Plugin 'google/vim-searchindex'
+
 if &term=~'linux'
   let g:CSApprox_loaded = 1
 endif
