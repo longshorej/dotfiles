@@ -1,6 +1,6 @@
 # longshorej's dotfiles
 
-This repository contains programs and configurations for use on a computer running Arch Linux.
+This repository contains programs and configurations for my computers.
 
 ## Features
 
