@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -d "$HOME/work/dotfiles" ]; then
+  >&2 echo "clone into $HOME/work/dotfiles"
+  exit 1
+fi
+
+cd "$HOME/work/dotfiles"
+
+os=
+host=$(hostname)
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  os=linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  os=macos
+else
+  >&2 echo "$0: unsupported OS: $OSTYPE"
+  exit 1
+fi
+
+JSL_SYNC_BASE=true
+JSL_SYNC_HOST=true
+JSL_SYNC_OS=true
+
+do-rsync() {
+  echo "* syncing $1"
+
+  rsync -m -rcip --links \
+    --filter=':- .gitignore' \
+    --exclude=dotscala \
+    --exclude=dotcustom \
+    --exclude=docker \
+    --exclude=system \
+    --exclude=.git \
+    --exclude='*.swp' \
+    --exclude=README.md \
+    --exclude=LICENSE \
+    --exclude=bin/jsl-install-dotfiles \
+    --exclude=bin/jsl-install-deps "$1" "$HOME"
+}
+
+if [ -f "./src/host/$host/.dotconfig" ]; then
+  source "./src/host/$host/.dotconfig"
+fi
+
+if [ "$JSL_SYNC_BASE" = "true" ]; then
+  do-rsync "./src/base/"
+  ln -sf "$HOME/work/dotfiles/src/base/.local/bin/jsl-install-dotfiles" "$HOME/.local/bin/jsl-install-dotfiles"
+fi
+
+if [ "$JSL_SYNC_OS" = "true" ]; then
+  do-rsync "./src/os/$os/"
+fi
+
+if [ "$JSL_SYNC_HOST" = "true" ] && [ -d "./src/host/$host" ]; then
+  do-rsync "./src/host/$host/"
+fi
+
