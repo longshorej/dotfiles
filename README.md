@@ -8,11 +8,40 @@ This repository contains programs and configurations for my computers.
 
 ## Installation
 
+### Step One
+
 ```sh
 $ git clone https://github.com/longshorej/dotfiles ~/work/dotfiles
-$ ~/work/dotfiles/install-deps
-$ ~/work/dotfiles/install-dotfiles
+$ ~/work/dotfiles/src/base/.local/bin/jsl-install-dotfiles
 ```
+
+### Step Two (macOS)
+
+Manual installation, given new computers are acquired fairly rarely and thus
+any automation likely to break during that timeframe.
+
+Add this line to `.bash_profile`:
+
+```sh
+[ -f ~/.local/.bash_profile ] && source ~/.local/.bash_profile
+```
+
+Add this line to `.bashrc`:
+
+```sh
+[ -f ~/.local/.bashrc && source ~/.local/.bashrc ]
+```
+
+Add this line to `.zshrc`:
+```sh
+[ -f ~/.local/.zshrc && source ~/.local/.zshrc ]
+```
+
+
+### Step Two (Linux)
+
+TODO - likely focus on home directory ssh, rather than wm in previous iterations
+TODO - because WM outsourced to apple
 
 ## Configuration (Environment Variables)
 

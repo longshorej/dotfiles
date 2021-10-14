@@ -28,7 +28,7 @@ JSL_SYNC_OS=true
 do-rsync() {
   echo "* syncing $1"
 
-  rsync -n -m -rcip --links \
+  rsync -m -rcip --links \
     --filter=':- .gitignore' \
     --exclude=dotscala \
     --exclude=dotcustom \

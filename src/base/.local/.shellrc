@@ -1,0 +1,4 @@
+# likely flawed, but try to keep this file compatible with bash/zsh
+# @TODO maybe simply switch back to bash?
+
+alias gbs="git branch --show"
