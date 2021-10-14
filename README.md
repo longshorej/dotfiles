@@ -29,12 +29,12 @@ Add this line to `.bash_profile`:
 Add this line to `.bashrc`:
 
 ```sh
-[ -f ~/.local/.bashrc && source ~/.local/.bashrc ]
+[ -f ~/.local/.bashrc ] && source ~/.local/.bashrc
 ```
 
 Add this line to `.zshrc`:
 ```sh
-[ -f ~/.local/.zshrc && source ~/.local/.zshrc ]
+[ -f ~/.local/.zshrc ] && source ~/.local/.zshrc
 ```
 
 

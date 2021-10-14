@@ -1,1 +1,1 @@
-source "$(dirname "$0")/.shellrc"
+source "$HOME/.local/.shellrc"
