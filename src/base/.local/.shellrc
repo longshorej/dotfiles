@@ -2,3 +2,4 @@
 # @TODO maybe simply switch back to bash?
 
 alias gbs="git branch --show"
+alias gbls="git for-each-ref --sort=committerdate refs/heads/"
