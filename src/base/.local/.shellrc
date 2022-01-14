@@ -3,3 +3,6 @@
 
 alias gbs="git branch --show"
 alias gbls="git for-each-ref --sort=committerdate refs/heads/"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias ll="ls -alF"
