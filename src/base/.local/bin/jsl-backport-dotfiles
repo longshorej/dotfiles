@@ -1,0 +1,67 @@
+#!/bin/bash
+
+set -e
+
+# This script is for backporting changes made to local shellrc/etc files
+# back to the dotfiles repository. The workflow is to edit things locally
+# for convenience and then run this, and then use git to diff the changes
+# and decide whether to commit or reset changes.
+#
+# To do this, it walks the files in the dotfiles repo and for each file
+# that exists locally, copies the local one over to dotfiles.
+#
+# If a file exists in more than one place, e.g. in base, host, or os, the
+# behavior is undefined.
+
+if [ ! -d "$HOME/work/dotfiles" ]; then
+  >&2 echo "clone into $HOME/work/dotfiles"
+  exit 1
+fi
+
+cd "$HOME/work/dotfiles"
+
+os=
+host=$(hostname)
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  os=linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  os=macos
+else
+  >&2 echo "$0: unsupported OS: $OSTYPE"
+  exit 1
+fi
+
+JSL_SYNC_BASE=true
+JSL_SYNC_HOST=true
+JSL_SYNC_OS=true
+
+do-backport() (
+  cd "$1"
+  find . -type f | while read suffix; do
+    from="$HOME/$suffix"
+    to="$HOME/work/dotfiles/$1/$suffix"
+
+    if [ -f "$from" ] && [ ! -h "$from" ]; then
+      cp "$from" "$to"
+    fi
+  done
+)
+
+
+if [ -f "./src/host/$host/.dotconfig" ]; then
+  source "./src/host/$host/.dotconfig"
+fi
+
+if [ "$JSL_SYNC_BASE" = "true" ]; then
+  do-backport "./src/base"
+fi
+
+if [ "$JSL_SYNC_OS" = "true" ]; then
+  do-backport "./src/os/$os"
+fi
+
+if [ "$JSL_SYNC_HOST" = "true" ] && [ -d "./src/host/$host" ]; then
+  do-backport "./src/host/$host"
+fi
+

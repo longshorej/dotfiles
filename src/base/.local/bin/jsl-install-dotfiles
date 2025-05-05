@@ -38,8 +38,9 @@ do-rsync() {
     --exclude='*.swp' \
     --exclude=README.md \
     --exclude=LICENSE \
+    --exclude=bin/jsl-backport-dotfiles \
     --exclude=bin/jsl-install-dotfiles \
-    --exclude=bin/jsl-install-deps "$1" "$HOME"
+    "$1" "$HOME"
 }
 
 if [ -f "./src/host/$host/.dotconfig" ]; then
@@ -48,6 +49,7 @@ fi
 
 if [ "$JSL_SYNC_BASE" = "true" ]; then
   do-rsync "./src/base/"
+  ln -sf "$HOME/work/dotfiles/src/base/.local/bin/jsl-backport-dotfiles" "$HOME/.local/bin/jsl-backport-dotfiles"
   ln -sf "$HOME/work/dotfiles/src/base/.local/bin/jsl-install-dotfiles" "$HOME/.local/bin/jsl-install-dotfiles"
 fi
 

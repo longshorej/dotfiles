@@ -12,4 +12,3 @@ alias gds="git diff --staged"
 alias gl="git log"
 alias gs="git status"
 alias ll="ls -alF"
-
